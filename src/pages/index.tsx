@@ -291,8 +291,7 @@ export default function Home() {
                     className="w-full h-full object-cover rounded-2xl"
                     autoPlay
                     muted
-                    loop
-                    playsInline
+                    controls
                   />
                 </div>
               </div>
@@ -306,13 +305,13 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="card-code-block dark">
-                  <pre className="shiki github-dark" style={{ backgroundColor: "#24292e", color: "#e1e4e8" }} tabIndex={0}><code style={{ padding: "1em", overflowX: "auto" }}><span className="line"><span style={{ color: "#F97583" }}>from</span><span style={{ color: "#E1E4E8" }}> smooth </span><span style={{ color: "#F97583" }}>import</span><span style={{ color: "#E1E4E8" }}> SmoothClient</span></span>
-                    <span className="line indent"></span>
-                    <span className="line indent"><span style={{ color: "#E1E4E8" }}>smooth_client </span><span style={{ color: "#F97583" }}>=</span><span style={{ color: "#E1E4E8" }}> SmoothClient(</span><span style={{ color: "#FFAB70" }}>api_key</span><span style={{ color: "#F97583" }}>=</span><span style={{ color: "#9ECBFF" }}>&ldquo;cmzr-YOUR_API_KEY&ldquo;</span><span style={{ color: "#E1E4E8" }}>)</span></span>
-                    <span className="line indent"><span style={{ color: "#E1E4E8" }}>task </span><span style={{ color: "#F97583" }}>=</span><span style={{ color: "#E1E4E8" }}> smooth_client.run(</span><span style={{ color: "#9ECBFF" }}>&ldquo;Go to google flights and find the cheapest flight from London to Paris today&ldquo;</span><span style={{ color: "#E1E4E8" }}>)</span></span>
-                    <span className="line indent"></span>
-                    <span className="line indent"><span style={{ color: "#79B8FF" }}>print</span><span style={{ color: "#E1E4E8" }}>(</span><span style={{ color: "#F97583" }}>f</span><span style={{ color: "#9ECBFF" }}>&ldquo;Live URL: </span><span style={{ color: "#79B8FF" }}>{'{'}</span><span style={{ color: "#E1E4E8" }}>task.live_url()</span><span style={{ color: "#79B8FF" }}>{'}'}</span><span style={{ color: "#9ECBFF" }}>&ldquo;</span><span style={{ color: "#E1E4E8" }}>)</span></span>
-                    <span className="line indent"><span style={{ color: "#79B8FF" }}>print</span><span style={{ color: "#E1E4E8" }}>(</span><span style={{ color: "#F97583" }}>f</span><span style={{ color: "#9ECBFF" }}>&ldquo;Agent response: </span><span style={{ color: "#79B8FF" }}>{'{'}</span><span style={{ color: "#E1E4E8" }}>task.result()</span><span style={{ color: "#79B8FF" }}>{'}'}</span><span style={{ color: "#9ECBFF" }}>&ldquo;</span><span style={{ color: "#E1E4E8" }}>)</span></span></code></pre>
+                  <pre className="shiki github-dark" style={{ backgroundColor: "#24292e", color: "#e1e4e8", padding: "1em" }} tabIndex={0}><code><span className="line"><span style={{ color: "#F97583" }}>from</span><span style={{ color: "#E1E4E8" }}> smooth </span><span style={{ color: "#F97583" }}>import</span><span style={{ color: "#E1E4E8" }}> SmoothClient</span><br/></span>
+                    <span className="line"><br/></span>
+                    <span className="line"><span style={{ color: "#E1E4E8" }}>smooth_client </span><span style={{ color: "#F97583" }}>=</span><span style={{ color: "#E1E4E8" }}> SmoothClient(</span><span style={{ color: "#FFAB70" }}>api_key</span><span style={{ color: "#F97583" }}>=</span><span style={{ color: "#9ECBFF" }}>&ldquo;cmzr-YOUR_API_KEY&ldquo;</span><span style={{ color: "#E1E4E8" }}>)</span><br/></span>
+                    <span className="line"><span style={{ color: "#E1E4E8" }}>task </span><span style={{ color: "#F97583" }}>=</span><span style={{ color: "#E1E4E8" }}> smooth_client.run(</span><span style={{ color: "#9ECBFF" }}>&ldquo;Go to google flights and find the cheapest flight from London to Paris today&ldquo;</span><span style={{ color: "#E1E4E8" }}>)</span><br/></span>
+                    <span className="line"><br/></span>
+                    <span className="line"><span style={{ color: "#79B8FF" }}>print</span><span style={{ color: "#E1E4E8" }}>(</span><span style={{ color: "#F97583" }}>f</span><span style={{ color: "#9ECBFF" }}>&ldquo;Live URL: </span><span style={{ color: "#79B8FF" }}>{'{'}</span><span style={{ color: "#E1E4E8" }}>task.live_url()</span><span style={{ color: "#79B8FF" }}>{'}'}</span><span style={{ color: "#9ECBFF" }}>&ldquo;</span><span style={{ color: "#E1E4E8" }}>)</span><br/></span>
+                    <span className="line"><span style={{ color: "#79B8FF" }}>print</span><span style={{ color: "#E1E4E8" }}>(</span><span style={{ color: "#F97583" }}>f</span><span style={{ color: "#9ECBFF" }}>&ldquo;Agent response: </span><span style={{ color: "#79B8FF" }}>{'{'}</span><span style={{ color: "#E1E4E8" }}>task.result()</span><span style={{ color: "#79B8FF" }}>{'}'}</span><span style={{ color: "#9ECBFF" }}>&ldquo;</span><span style={{ color: "#E1E4E8" }}>)</span><br/></span></code></pre>
                 </div>
               </div>
             </section>

@@ -27,7 +27,7 @@ const mobileTasks: Task[] = [
     title: "Social media automation",
     task: "Automate any action on any social media",
     cost: "$0.04",
-    duration: "48s",
+    duration: "56s",
     videoUrl: "/videos/linkedin.mov",
   },
   {
@@ -162,7 +162,7 @@ export function BrowserAgentShowcase() {
   }
 
   return (
-    <div className="w-full mx-auto">
+    <div className="w-fit mx-auto">
       <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-6 md:p-8 shadow-2xl">
         <div className="flex justify-center mb-6">
           <div>
@@ -193,7 +193,7 @@ export function BrowserAgentShowcase() {
 
         <div className="flex flex-col lg:flex-row gap-8 h-full items-center">
           {/* Task List */}
-          <div className="w-full lg:max-w-1/2 min-w-0 rounded-xl">
+          <div className="w-full lg:w-[500px] min-w-0 rounded-xl">
             <div className="space-y-0">
               {currentTasks.map((task, index) => (
                 <div key={task.id}>
@@ -237,11 +237,11 @@ export function BrowserAgentShowcase() {
           </div>
 
           {/* Video Player */}
-          <div className="lg:w-1/2 flex shrink-1 max-h-full min-h-64 min-w-64">
-            <div className="relative mx-auto bg-black rounded-2xl overflow-hidden shadow-xl">
+          <div className="lg:max-w-1/2 w-fit flex shrink-1 max-h-full min-h-64 min-w-64">
+            <div className="relative mx-auto bg-white rounded-2xl overflow-hidden shadow-xl">
               {/* Video container now fills available height */}
               <div
-                className="relative bg-gray-900"
+                className="relative m-[-2px]"
                 // style={{
                 //   width: "min(390px, 100vw - 3rem)",
                 // }}

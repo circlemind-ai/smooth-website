@@ -787,10 +787,3 @@ section {
   border-radius: var(--radius-xs);
   color: var(--color-text-secondary);
 }
-
-.line {
-  display: block;
-}
-.line.indent {
-  padding-left: 32px;
-}
