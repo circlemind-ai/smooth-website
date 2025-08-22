@@ -246,15 +246,23 @@ export function BrowserAgentShowcase() {
                 //   width: "min(390px, 100vw - 3rem)",
                 // }}
               >
-                <video
-                  ref={videoRef}
-                  src={currentTask.videoUrl}
-                  className="w-full h-full lg:max-h-[500px]"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
+                <div className="relative">
+                  <video
+                    src={taskType == "mobile" ? "videos/calendly.mp4" : "videos/summit.mp4"}
+                    className="w-full h-full lg:max-h-[500px] invisible opacity-0"
+                    muted
+                    playsInline
+                  />
+                  <video
+                    ref={videoRef}
+                    src={currentTask.videoUrl}
+                    className="w-full h-full lg:max-h-[500px] absolute inset-0"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                </div>
 
                 {/* Video controls overlay */}
                 <div className="absolute top-4 right-4 flex items-center gap-2">

@@ -292,6 +292,7 @@ export default function Home() {
                     autoPlay
                     muted
                     controls
+                    loop
                   />
                 </div>
               </div>
