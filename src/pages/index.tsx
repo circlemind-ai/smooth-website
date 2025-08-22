@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 
 import smoothLogo from "@/assets/images/smooth.svg";
-import placeholderMainUi from "@/assets/images/placeholder-main-ui.png";
 import ycLogo from "@/assets/images/yc.png";
 import benchmarkImage from "@/assets/images/benchmark.png";
 import fiveXImage from "@/assets/images/5x.png";

@@ -28,14 +28,14 @@ const mobileTasks: Task[] = [
     task: "Automate any action on any social media",
     cost: "$0.04",
     duration: "48s",
-    videoUrl: "/videos/linkedin.mp4",
+    videoUrl: "/videos/linkedin.mov",
   },
   {
     id: "m3",
     title: "Dynamic multi-step forms",
     task: "Automatically get a quote from Octopus energy",
     cost: "$0.02",
-    duration: "55s",
+    duration: "37s",
     videoUrl: "/videos/octopus.mp4",
   },
   {
@@ -125,6 +125,16 @@ export function BrowserAgentShowcase() {
         })
       }, intervalTime)
     }
+    if (videoRef.current) {
+      videoRef.current.playbackRate = playbackSpeed
+    }
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.play()
+      } else {
+        videoRef.current.pause()
+      }
+    }
 
     return () => {
       if (progressIntervalRef.current) {
@@ -155,8 +165,9 @@ export function BrowserAgentShowcase() {
     <div className="w-full mx-auto">
       <div className="bg-white/70 backdrop-blur-xl rounded-3xl p-6 md:p-8 shadow-2xl">
         <div className="flex justify-center mb-6">
-          <div className="bg-gray-100/80 backdrop-blur-sm rounded-full p-1 flex">
-            <button
+          <div>
+            <div className="bg-gray-100/80 backdrop-blur-sm rounded-full p-1 flex items-center w-fit mx-auto">
+              <button
               onClick={() => setTaskType("mobile")}
               className={cn(
                 "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer",
@@ -176,12 +187,13 @@ export function BrowserAgentShowcase() {
               <Monitor className="w-4 h-4" />
               Desktop
             </button>
+            </div>
           </div>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8 h-full items-center">
           {/* Task List */}
-          <div className="w-full lg:w-1/2 min-w-0 rounded-xl">
+          <div className="w-full lg:max-w-1/2 min-w-0 rounded-xl">
             <div className="space-y-0">
               {currentTasks.map((task, index) => (
                 <div key={task.id}>
@@ -225,8 +237,8 @@ export function BrowserAgentShowcase() {
           </div>
 
           {/* Video Player */}
-          <div className="lg:w-1/2 lg:h-full shrink-1 object-contain max-h-full">
-            <div className="relative bg-black rounded-2xl overflow-hidden shadow-xl">
+          <div className="lg:w-1/2 flex shrink-1 max-h-full min-h-64 min-w-64">
+            <div className="relative mx-auto bg-black rounded-2xl overflow-hidden shadow-xl">
               {/* Video container now fills available height */}
               <div
                 className="relative bg-gray-900"
@@ -237,7 +249,7 @@ export function BrowserAgentShowcase() {
                 <video
                   ref={videoRef}
                   src={currentTask.videoUrl}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full lg:max-h-[500px]"
                   autoPlay
                   muted
                   loop
