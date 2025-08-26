@@ -39,7 +39,7 @@ export default function Home() {
         <meta name="twitter:image" content="social-image.png" />
         <meta name="twitter:url" content="https://smooth.sh" />
 
-        <link rel="icon" href="images/favicon/favicon.ico" sizes="32x32" />
+        <link rel="icon" href="images/favicon/favicon.ico" sizes="128x128" />
         <link rel="icon" href="images/favicon/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png" />
 
