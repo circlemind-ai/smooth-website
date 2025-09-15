@@ -18,8 +18,8 @@ export default function Pricing() {
         <link rel="icon" href="images/favicon/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png" />
       </Head>
-      <Script src="/lib/js/main.js" />
-      <Script src="/lib/js/pricing.js" />
+      <script src="/lib/js/main.js" />
+      <script src="/lib/js/pricing.js" />
       <div>
         <div className="background-gradient"></div>
         <div className="page-container">
@@ -32,8 +32,8 @@ export default function Pricing() {
             /></Link>
             <nav role="navigation" className="nav-menu" data-navigation>
               <Link href="#" className="nav-link">Pricing</Link>
-              <Link href="https://docs.circlemind.co/performance" className="nav-link">Benchmarks</Link>
-              <Link href="https://docs.circlemind.co" className="nav-link">Docs ↗</Link>
+              <Link href="https://docs.smooth.sh/performance" className="nav-link">Benchmarks</Link>
+              <Link href="https://docs.smooth.sh" className="nav-link">Docs ↗</Link>
               <div className="button-group stacked margin-top-l mobile-only">
                 <Link href="https://zero.circlemind.co/developer" className="button tertiary">Sign In</Link>
                 <Link href="https://zero.circlemind.co/developer" className="button primary">Sign Up</Link>
@@ -291,8 +291,8 @@ export default function Pricing() {
               <div>
                 <div className="link-list">
                   <Link href="/pricing" className="ui s">Pricing</Link>
-                  <Link href="https://docs.circlemind.co/performance" className="ui s">Benchmarks</Link>
-                  <Link href="https://docs.circlemind.co" className="ui s" target="_blank">Docs ↗</Link>
+                  <Link href="https://docs.smooth.sh/performance" className="ui s">Benchmarks</Link>
+                  <Link href="https://docs.smooth.sh" className="ui s" target="_blank">Docs ↗</Link>
                   <Link href="https://zero.circlemind.co/developer" className="ui s" target="_blank">Dashboard ↗</Link>
                 </div>
               </div>
