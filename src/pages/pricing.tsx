@@ -157,7 +157,7 @@ export default function Pricing() {
                       </div>
                       <div className="feature-item paragraph s">
                         <div className="fa-regular fa-square-check icon m"></div>
-                        <div>100 concurrent browsers</div>
+                        <div>50 concurrent browsers</div>
                       </div>
                       <div className="feature-item paragraph s">
                         <div className="fa-regular fa-square-check icon m"></div>
@@ -172,7 +172,7 @@ export default function Pricing() {
                 <div className="feature-heading">
                   <p className="paragraph l bold no-top-margin">Enterprise</p>
                   <p className="paragraph s secondary">
-                    Custom solutions, premium support.
+                    Custom solutions, security compliance, premium support.
                   </p>
                 </div>
                 <a href="https://calendly.com/circlemind/circlemind-demo" className="button tertiary">Request a demo</a>
@@ -198,7 +198,7 @@ export default function Pricing() {
                   <tr className="pricing-table-row">
                     <td className="paragraph s">Concurrent browsers</td>
                     <td className="paragraph s">10</td>
-                    <td className="paragraph s">100</td>
+                    <td className="paragraph s">50</td>
                     <td className="paragraph s">Unlimited</td>
                   </tr>
                   <tr className="pricing-table-row">

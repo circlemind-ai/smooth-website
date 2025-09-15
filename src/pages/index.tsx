@@ -79,7 +79,7 @@ export default function Home() {
           <main>
             <section>
               <div className="heading hero centered">
-                <Link href="https://circlemind.co" className="eyebrow">No-code? Check out Zero</Link>
+                <Link href="https://docs.circlemind.co/performance" className="eyebrow">Smooth scores 92% on WebVoyager </Link>
                 <h1 className="balanced">
                   Fast, simple, reliable browser agent
                 </h1>
