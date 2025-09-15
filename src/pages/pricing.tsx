@@ -32,8 +32,8 @@ export default function Pricing() {
             /></Link>
             <nav role="navigation" className="nav-menu" data-navigation>
               <Link href="#" className="nav-link">Pricing</Link>
-              <Link href="https://docs.circlemind.co/performance" className="nav-link">Benchmarks</Link>
-              <Link href="https://docs.circlemind.co" className="nav-link">Docs ↗</Link>
+              <Link href="https://docs.smooth.sh/performance" className="nav-link">Benchmarks</Link>
+              <Link href="https://docs.smooth.sh" className="nav-link">Docs ↗</Link>
               <div className="button-group stacked margin-top-l mobile-only">
                 <Link href="https://zero.circlemind.co/developer" className="button tertiary">Sign In</Link>
                 <Link href="https://zero.circlemind.co/developer" className="button primary">Sign Up</Link>
@@ -157,7 +157,7 @@ export default function Pricing() {
                       </div>
                       <div className="feature-item paragraph s">
                         <div className="fa-regular fa-square-check icon m"></div>
-                        <div>100 concurrent browsers</div>
+                        <div>50 concurrent browsers</div>
                       </div>
                       <div className="feature-item paragraph s">
                         <div className="fa-regular fa-square-check icon m"></div>
@@ -172,7 +172,7 @@ export default function Pricing() {
                 <div className="feature-heading">
                   <p className="paragraph l bold no-top-margin">Enterprise</p>
                   <p className="paragraph s secondary">
-                    Custom solutions, premium support.
+                    Custom solutions, security compliance, premium support.
                   </p>
                 </div>
                 <a href="https://calendly.com/circlemind/circlemind-demo" className="button tertiary">Request a demo</a>
@@ -198,7 +198,7 @@ export default function Pricing() {
                   <tr className="pricing-table-row">
                     <td className="paragraph s">Concurrent browsers</td>
                     <td className="paragraph s">10</td>
-                    <td className="paragraph s">100</td>
+                    <td className="paragraph s">50</td>
                     <td className="paragraph s">Unlimited</td>
                   </tr>
                   <tr className="pricing-table-row">
@@ -291,8 +291,8 @@ export default function Pricing() {
               <div>
                 <div className="link-list">
                   <Link href="/pricing" className="ui s">Pricing</Link>
-                  <Link href="https://docs.circlemind.co/performance" className="ui s">Benchmarks</Link>
-                  <Link href="https://docs.circlemind.co" className="ui s" target="_blank">Docs ↗</Link>
+                  <Link href="https://docs.smooth.sh/performance" className="ui s">Benchmarks</Link>
+                  <Link href="https://docs.smooth.sh" className="ui s" target="_blank">Docs ↗</Link>
                   <Link href="https://zero.circlemind.co/developer" className="ui s" target="_blank">Dashboard ↗</Link>
                 </div>
               </div>
