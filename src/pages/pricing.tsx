@@ -35,13 +35,13 @@ export default function Pricing() {
               <Link href="https://docs.smooth.sh/performance" className="nav-link">Benchmarks</Link>
               <Link href="https://docs.smooth.sh" className="nav-link">Docs ↗</Link>
               <div className="button-group stacked margin-top-l mobile-only">
-                <Link href="https://zero.circlemind.co/developer" className="button tertiary">Sign In</Link>
-                <Link href="https://zero.circlemind.co/developer" className="button primary">Sign Up</Link>
+                <Link href="https://app.smooth.sh" className="button tertiary">Sign In</Link>
+                <Link href="https://app.smooth.sh" className="button primary">Sign Up</Link>
               </div>
             </nav>
             <div className="button-group">
-              <Link href="https://zero.circlemind.co/developer" className="button tertiary compact hide-on-mobile">Sign In</Link>
-              <Link href="https://zero.circlemind.co/developer" className="button primary compact">Sign Up</Link>
+              <Link href="https://app.smooth.sh" className="button tertiary compact hide-on-mobile">Sign In</Link>
+              <Link href="https://app.smooth.sh" className="button primary compact">Sign Up</Link>
               <button className="button ghost compact nav-hamburger" ref={mobileToggleRef} aria-label="Show menu">
                 <span className="fa-solid fa-bars icon m"></span>
               </button>
@@ -81,7 +81,7 @@ export default function Pricing() {
                       </div>
                     </div>
                   </div>
-                  <a href="https://zero.circlemind.co/developer" className="button tertiary full-width margin-top-l">Start for free</a>
+                  <a href="https://app.smooth.sh" className="button tertiary full-width margin-top-l">Start for free</a>
                 </div>
                 <div className="feature-card justified-vertically">
                   <div>
@@ -130,7 +130,7 @@ export default function Pricing() {
                       </div>
                     </div>
                   </div>
-                  <a href="https://zero.circlemind.co/developer" className="button primary full-width margin-top-l">Start for free</a>
+                  <a href="https://app.smooth.sh" className="button primary full-width margin-top-l">Start for free</a>
                 </div>
                 <div className="feature-card justified-vertically">
                   <div>
@@ -166,7 +166,7 @@ export default function Pricing() {
                       </div>
                     </div>
                   </div>
-                  <a href="https://zero.circlemind.co/developer" className="button tertiary full-width margin-top-l">Start for free</a>
+                  <a href="https://app.smooth.sh" className="button tertiary full-width margin-top-l">Start for free</a>
                 </div>
               </div>
               <div className="feature-card">
@@ -294,7 +294,7 @@ export default function Pricing() {
                   <Link href="/pricing" className="ui s">Pricing</Link>
                   <Link href="https://docs.smooth.sh/performance" className="ui s">Benchmarks</Link>
                   <Link href="https://docs.smooth.sh" className="ui s" target="_blank">Docs ↗</Link>
-                  <Link href="https://zero.circlemind.co/developer" className="ui s" target="_blank">Dashboard ↗</Link>
+                  <Link href="https://app.smooth.sh" className="ui s" target="_blank">Dashboard ↗</Link>
                 </div>
               </div>
               <div>
@@ -315,8 +315,8 @@ export default function Pricing() {
               </div>
             </div>
             <div className="link-list-horizontal">
-              <Link href="https://zero.circlemind.co/privacy" className="ui s tertiary">Privacy Policy</Link>
-              <Link href="https://zero.circlemind.co/terms" className="ui s tertiary">Terms of Service</Link>
+              <Link href="https://app.smooth.sh/privacy" className="ui s tertiary">Privacy Policy</Link>
+              <Link href="https://app.smooth.sh/terms" className="ui s tertiary">Terms of Service</Link>
             </div>
           </footer>
         </div>
