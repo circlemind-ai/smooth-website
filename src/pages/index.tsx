@@ -64,13 +64,13 @@ export default function Home() {
               <Link href="https://docs.smooth.sh/performance" className="nav-link">Benchmarks</Link>
               <Link href="https://docs.smooth.sh" className="nav-link">Docs ↗</Link>
               <div className="button-group stacked margin-top-l mobile-only">
-                <Link href="https://zero.circlemind.co/developer" className="button tertiary">Sign In</Link>
-                <Link href="https://zero.circlemind.co/developer" className="button primary">Sign Up</Link>
+                <Link href="https://app.smooth.sh" className="button tertiary">Sign In</Link>
+                <Link href="https://app.smooth.sh" className="button primary">Sign Up</Link>
               </div>
             </nav>
             <div className="button-group">
-              <Link href="https://zero.circlemind.co/developer" className="button tertiary compact hide-on-mobile">Sign In</Link>
-              <Link href="https://zero.circlemind.co/developer" className="button primary compact">Sign Up</Link>
+              <Link href="https://app.smooth.sh" className="button tertiary compact hide-on-mobile">Sign In</Link>
+              <Link href="https://app.smooth.sh" className="button primary compact">Sign Up</Link>
               <button className="button ghost compact nav-hamburger" ref={mobileToggleRef} aria-label="Show menu">
                 <span className="fa-solid fa-bars icon m"></span>
               </button>
@@ -87,7 +87,7 @@ export default function Home() {
                   Serverless browser agent API built from first principles: reliable, secure, 5x faster, 7x cheaper, and extremely scalable
                 </p>
                 <div className="button-group margin-paragraph centered">
-                  <Link href="https://zero.circlemind.co/developer" className="button primary">Start for free</Link>
+                  <Link href="https://app.smooth.sh" className="button primary">Start for free</Link>
                   <Link href="https://calendly.com/circlemind/circlemind-demo" className="button tertiary">Request a Demo</Link>
                 </div>
               </div>
@@ -420,7 +420,7 @@ export default function Home() {
               <div className="heading centered balanced">
                 <h2>Start for free, scale easily.</h2>
                 <div className="button-group margin-paragraph centered">
-                  <Link href="https://zero.circlemind.co/developer" className="button primary">Start for free</Link>
+                  <Link href="https://app.smooth.sh" className="button primary">Start for free</Link>
                   <Link href="https://calendly.com/circlemind/circlemind-demo" className="button tertiary">Request a Demo</Link>
                 </div>
               </div>
@@ -438,7 +438,7 @@ export default function Home() {
                   <Link href="pricing" className="ui s">Pricing</Link>
                   <Link href="https://docs.smooth.sh/performance" className="ui s">Benchmarks</Link>
                   <Link href="https://docs.smooth.sh" className="ui s" target="_blank">Docs ↗</Link>
-                  <Link href="https://zero.circlemind.co/developer" className="ui s" target="_blank">Dashboard ↗</Link>
+                  <Link href="https://app.smooth.sh" className="ui s" target="_blank">Dashboard ↗</Link>
                 </div>
               </div>
               <div>
