@@ -12,9 +12,10 @@ import prodImage from "@/assets/images/prod.png";
 import scalableImage from "@/assets/images/scalable.png";
 
 import BrowserAgentShowcase from "@/components/BrowserAgentShowcase";
-import Script from "next/script";
+import { useMobileNavigation } from "@/components/MobileNavigation";
 
 export default function Home() {
+  const { mobileToggleRef, navigationRef } = useMobileNavigation();
   return (
     <>
       <Head>
@@ -46,7 +47,6 @@ export default function Home() {
         {/* <link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" /> */}
         {/* <link href="vendor/font-awesome-6.7.2/css/all.min.css" rel="stylesheet" /> */}
       </Head>
-      <Script src="/lib/js/main.js" strategy="beforeInteractive" />
       <div>
         <div className="background-gradient"></div>
         <div className="page-container">
@@ -59,7 +59,7 @@ export default function Home() {
                 alt="Logo Template"
               />
             </Link>
-            <nav role="navigation" className="nav-menu" data-navigation>
+            <nav role="navigation" className="nav-menu" ref={navigationRef}>
               <Link href="pricing" className="nav-link">Pricing</Link>
               <Link href="https://docs.smooth.sh/performance" className="nav-link">Benchmarks</Link>
               <Link href="https://docs.smooth.sh" className="nav-link">Docs ↗</Link>
@@ -71,7 +71,7 @@ export default function Home() {
             <div className="button-group">
               <Link href="https://zero.circlemind.co/developer" className="button tertiary compact hide-on-mobile">Sign In</Link>
               <Link href="https://zero.circlemind.co/developer" className="button primary compact">Sign Up</Link>
-              <button className="button ghost compact nav-hamburger" data-mobile-toggle aria-label="Show menu">
+              <button className="button ghost compact nav-hamburger" ref={mobileToggleRef} aria-label="Show menu">
                 <span className="fa-solid fa-bars icon m"></span>
               </button>
             </div>

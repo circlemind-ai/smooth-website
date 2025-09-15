@@ -3,9 +3,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import smoothLogo from "@/assets/images/smooth.svg";
-import Script from "next/script";
+import { useMobileNavigation } from "@/components/MobileNavigation";
+import PricingToggle from "@/components/PricingToggle";
 
 export default function Pricing() {
+  const { mobileToggleRef, navigationRef } = useMobileNavigation();
   return (
     <>
       <Head>
@@ -18,8 +20,6 @@ export default function Pricing() {
         <link rel="icon" href="images/favicon/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png" />
       </Head>
-      <Script src="/lib/js/main.js" strategy="beforeInteractive" />
-      <Script src="/lib/js/pricing.js" strategy="beforeInteractive" />
       <div>
         <div className="background-gradient"></div>
         <div className="page-container">
@@ -30,7 +30,7 @@ export default function Pricing() {
               height={28}
               alt="Logo Template"
             /></Link>
-            <nav role="navigation" className="nav-menu" data-navigation>
+            <nav role="navigation" className="nav-menu" ref={navigationRef}>
               <Link href="#" className="nav-link">Pricing</Link>
               <Link href="https://docs.smooth.sh/performance" className="nav-link">Benchmarks</Link>
               <Link href="https://docs.smooth.sh" className="nav-link">Docs ↗</Link>
@@ -42,7 +42,7 @@ export default function Pricing() {
             <div className="button-group">
               <Link href="https://zero.circlemind.co/developer" className="button tertiary compact hide-on-mobile">Sign In</Link>
               <Link href="https://zero.circlemind.co/developer" className="button primary compact">Sign Up</Link>
-              <button className="button ghost compact nav-hamburger" data-mobile-toggle aria-label="Show menu">
+              <button className="button ghost compact nav-hamburger" ref={mobileToggleRef} aria-label="Show menu">
                 <span className="fa-solid fa-bars icon m"></span>
               </button>
             </div>
@@ -52,6 +52,7 @@ export default function Pricing() {
               <div className="text-centered full-width">
                 <h1>Flexible Pricing</h1>
                 <p>Transparent pricing. No hidden fees.</p>
+                <PricingToggle className="margin-top-m" />
               </div>
               <div className="grid columns-3 margin-top-xl">
                 <div className="feature-card justified-vertically">
