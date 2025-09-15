@@ -459,8 +459,8 @@ export default function Home() {
               </div>
             </div>
             <div className="link-list-horizontal">
-              <Link href="https://zero.circlemind.co/privacy" className="ui s tertiary">Privacy Policy</Link>
-              <Link href="https://zero.circlemind.co/terms" className="ui s tertiary">Terms of Service</Link>
+              <Link href="https://app.smooth.sh/privacy" className="ui s tertiary">Privacy Policy</Link>
+              <Link href="https://app.smooth.sh/terms" className="ui s tertiary">Terms of Service</Link>
             </div>
           </footer>
         </div>
