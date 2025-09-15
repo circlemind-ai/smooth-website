@@ -18,8 +18,8 @@ export default function Pricing() {
         <link rel="icon" href="images/favicon/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png" />
       </Head>
-      <Script src="/lib/js/main.js" />
-      <Script src="/lib/js/pricing.js" />
+      <Script src="/lib/js/main.js" strategy="beforeInteractive" />
+      <Script src="/lib/js/pricing.js" strategy="beforeInteractive" />
       <div>
         <div className="background-gradient"></div>
         <div className="page-container">

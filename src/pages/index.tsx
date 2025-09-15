@@ -46,7 +46,7 @@ export default function Home() {
         {/* <link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" /> */}
         {/* <link href="vendor/font-awesome-6.7.2/css/all.min.css" rel="stylesheet" /> */}
       </Head>
-      <Script src="/lib/js/main.js" />
+      <Script src="/lib/js/main.js" strategy="beforeInteractive" />
       <div>
         <div className="background-gradient"></div>
         <div className="page-container">
