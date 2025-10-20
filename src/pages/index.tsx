@@ -422,7 +422,7 @@ export default function Home() {
                   </summary>
                   <div className="accordion-content">
                     <p>
-                      Yes, reach out if you're interested in building with us! We work exclusively on-site.
+                      Yes, reach out if you&apos;re interested in building with us! We work exclusively on-site.
                     </p>
                   </div>
                 </details>
