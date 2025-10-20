@@ -414,6 +414,18 @@ export default function Home() {
                     </p>
                   </div>
                 </details>
+
+                <details className="accordion-item" name="faq">
+                  <summary className="accordion-toggle">
+                    <p className="paragraph m bold">Are you hiring?</p>
+                    <span className="accordion-chevron fa-solid fa-chevron-down"></span>
+                  </summary>
+                  <div className="accordion-content">
+                    <p>
+                      Yes, reach out if you're interested in building with us! We work exclusively on-site.
+                    </p>
+                  </div>
+                </details>
               </div>
             </section>
             <section className="promo-cta">
