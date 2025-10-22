@@ -19,7 +19,7 @@ const mobileTasks: Task[] = [
     title: "Scrape behind login",
     task: "Find our latest invoice from Calendly",
     cost: "$0.03",
-    duration: "27s",
+    duration: "20s",
     videoUrl: "videos/calendly.mp4",
   },
   {
@@ -27,7 +27,7 @@ const mobileTasks: Task[] = [
     title: "Social media automation",
     task: "Automate any action on any social media",
     cost: "$0.04",
-    duration: "56s",
+    duration: "36s",
     videoUrl: "/videos/linkedin.mov",
   },
   {
@@ -35,7 +35,7 @@ const mobileTasks: Task[] = [
     title: "Dynamic multi-step forms",
     task: "Automatically get a quote from Octopus energy",
     cost: "$0.02",
-    duration: "37s",
+    duration: "29s",
     videoUrl: "/videos/octopus.mp4",
   },
   {
@@ -43,7 +43,7 @@ const mobileTasks: Task[] = [
     title: "QA testing",
     task: "Test the iPhone page on apple.com",
     cost: "$0.02",
-    duration: "45s",
+    duration: "35s",
     videoUrl: "/videos/apple.mp4",
   },
 ]
@@ -54,7 +54,7 @@ const desktopTasks: Task[] = [
     title: "Lead capture",
     task: "Find all speakers from the London AI Summit website",
     cost: "$0.04",
-    duration: "1m 41s",
+    duration: "1m 17s",
     videoUrl: "/videos/summit.mp4",
   },
   {
@@ -62,7 +62,7 @@ const desktopTasks: Task[] = [
     title: "Real-time people enrichment",
     task: "Find the latest Linkedin article from Bill Gates",
     cost: "$0.02",
-    duration: "33s",
+    duration: "25s",
     videoUrl: "/videos/bill_gates.mp4",
   },
   {
@@ -70,7 +70,7 @@ const desktopTasks: Task[] = [
     title: "Government portals",
     task: "Extract data from government portals like SEC filings",
     cost: "$0.03",
-    duration: "1m 6s",
+    duration: "50s",
     videoUrl: "videos/gov.mp4",
   },
   {
@@ -78,7 +78,7 @@ const desktopTasks: Task[] = [
     title: "Flight search",
     task: "Search flights from New York to London",
     cost: "$0.04",
-    duration: "54s",
+    duration: "42s",
     videoUrl: "/videos/flights.mp4",
   },
 ]
