@@ -27,7 +27,7 @@ const mobileTasks: Task[] = [
     title: "Social media automation",
     task: "Automate any action on any social media",
     cost: "$0.04",
-    duration: "36s",
+    duration: "43s",
     videoUrl: "/videos/linkedin.mov",
   },
   {
