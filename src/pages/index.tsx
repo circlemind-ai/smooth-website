@@ -81,7 +81,7 @@ export default function Home() {
               <div className="heading hero centered">
                 <Link href="https://docs.smooth.sh/performance" className="eyebrow">Smooth scores 92% on WebVoyager </Link>
                 <h1 className="balanced">
-                  Fast, simple, reliable browser agent
+                  The most reliable browser agent yet
                 </h1>
                 <p className="paragraph m secondary balanced">
                   Serverless browser agent API built from first principles: reliable, secure, 5x faster, 7x cheaper, and extremely scalable
@@ -119,7 +119,7 @@ export default function Home() {
                 <div className="feature-card">
                   <div className="feature-heading">
                     <h3 className="color-accent no-top-margin">
-                      The most reliable browser agent yet
+                      State-of-the-art reliability
                     </h3>
                     <p className="paragraph m secondary">
                       Smooth outperforms all leading alternatives.
@@ -286,13 +286,13 @@ export default function Home() {
               </div>
               <div className="image-wide">
                 <div style={{ textAlign: "center", marginTop: "64px" }}>
-                  <video
-                    src="/videos/demo.mp4"
-                    className="w-full h-full object-cover rounded-2xl"
-                    autoPlay
-                    muted
-                    controls
-                    loop
+                  <img
+                    src="/images/comparison.gif"
+                    className="w-[80%] h-full object-cover rounded-2xl"
+                    alt="Demo comparison"
+                    style={{
+                      border: "3px solid var(--color-accent)"
+                    }}
                   />
                 </div>
               </div>
@@ -422,7 +422,7 @@ export default function Home() {
                   </summary>
                   <div className="accordion-content">
                     <p>
-                      Yes, reach out if you&apos;re interested in building with us! We work exclusively on-site.
+                      Yes, reach out if you&apos;re interested in building with us!
                     </p>
                   </div>
                 </details>
