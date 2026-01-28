@@ -249,8 +249,8 @@ export function BrowserAgentShowcase() {
                 className="relative m-[-2px]"
                 style={{
                   aspectRatio: taskType === "mobile" ? "374/812" : "1366/768",
-                  height: taskType === "desktop" ? "500px" : "auto",
-                  maxHeight: "500px",
+                  height: taskType === "desktop" ? "min(300px, 25vh)" : "auto",
+                  maxHeight: taskType === "mobile" ? "500px" : undefined,
                 }}
               >
                 <video
