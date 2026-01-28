@@ -247,21 +247,20 @@ export function BrowserAgentShowcase() {
               {/* Video container now fills available height */}
               <div
                 className="relative m-[-2px]"
-                // style={{
-                //   width: "min(390px, 100vw - 3rem)",
-                // }}
+                style={{
+                  aspectRatio: taskType === "mobile" ? "374/812" : "1366/768",
+                  maxHeight: "500px",
+                }}
               >
-                <div className="relative">
-                  <video
-                    ref={videoRef}
-                    src={currentTask.videoUrl}
-                    className="w-full h-full lg:max-h-[500px]"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
-                </div>
+                <video
+                  ref={videoRef}
+                  src={currentTask.videoUrl}
+                  className="w-full h-full object-contain"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                />
 
                 {/* Video controls overlay */}
                 <div className="absolute top-4 right-4 flex items-center gap-2">
