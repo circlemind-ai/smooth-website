@@ -242,7 +242,7 @@ export function BrowserAgentShowcase() {
           </div>
 
           {/* Video Player */}
-          <div className="lg:max-w-1/2 w-fit flex shrink-1 max-h-full min-h-64 min-w-64">
+          <div className="lg:max-w-1/2 w-fit flex shrink-1 max-h-full min-w-64">
             <div className="relative mx-auto bg-white rounded-2xl overflow-hidden shadow-xl">
               {/* Video container now fills available height */}
               <div
