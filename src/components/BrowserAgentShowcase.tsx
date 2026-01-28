@@ -28,7 +28,7 @@ const mobileTasks: Task[] = [
     task: "Automate any action on any social media",
     cost: "$0.04",
     duration: "43s",
-    videoUrl: "/videos/linkedin.mov",
+    videoUrl: "/videos/linkedin.mp4",
   },
   {
     id: "m3",
@@ -130,7 +130,12 @@ export function BrowserAgentShowcase() {
     }
     if (videoRef.current) {
       if (isPlaying) {
-        videoRef.current.play()
+        const playPromise = videoRef.current.play()
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Autoplay was prevented - expected on some mobile browsers
+          })
+        }
       } else {
         videoRef.current.pause()
       }
@@ -248,15 +253,9 @@ export function BrowserAgentShowcase() {
               >
                 <div className="relative">
                   <video
-                    src={taskType == "mobile" ? "videos/calendly.mp4" : "videos/summit.mp4"}
-                    className="w-full h-full lg:max-h-[500px] invisible opacity-0"
-                    muted
-                    playsInline
-                  />
-                  <video
                     ref={videoRef}
                     src={currentTask.videoUrl}
-                    className="w-full h-full lg:max-h-[500px] absolute inset-0"
+                    className="w-full h-full lg:max-h-[500px]"
                     autoPlay
                     muted
                     loop
