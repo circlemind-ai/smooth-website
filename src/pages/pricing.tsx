@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import smoothLogo from "@/assets/images/smooth.svg";
 import { useMobileNavigation } from "@/components/MobileNavigation";
-import PricingToggle from "@/components/PricingToggle";
 
 export default function Pricing() {
   const { mobileToggleRef, navigationRef } = useMobileNavigation();
@@ -52,7 +51,6 @@ export default function Pricing() {
               <div className="text-centered full-width">
                 <h1>Flexible Pricing</h1>
                 <p>Transparent pricing. No hidden fees.</p>
-                <PricingToggle className="margin-top-m" />
               </div>
               <div className="grid columns-3 margin-top-xl">
                 <div className="feature-card justified-vertically">
