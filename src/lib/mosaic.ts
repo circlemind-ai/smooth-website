@@ -44,11 +44,20 @@ export function paletteFromHue(hex: string): Palette {
   };
 }
 
-function shade(v: number, pink: number, light: boolean, pal: Palette | null): string {
+function shade(
+  v: number,
+  pink: number,
+  light: boolean,
+  pal: Palette | null,
+  maxPink: number,
+): string {
   const t = Math.max(0, Math.min(1, v));
 
   if (pal) {
-    const c = t < 0.5 ? mix(pal.deep, pal.base, t * 2) : mix(pal.base, pal.top, (t - 0.5) * 2);
+    const c =
+      t < 0.5
+        ? mix(pal.deep, pal.base, t * 2)
+        : mix(pal.base, pal.top, (t - 0.5) * 2);
     return `rgb(${c[0] | 0},${c[1] | 0},${c[2] | 0})`;
   }
 
@@ -59,21 +68,31 @@ function shade(v: number, pink: number, light: boolean, pal: Palette | null): st
   const top: RGB = light ? [190, 222, 255] : [255, 255, 255];
 
   let c = t < 0.5 ? mix(deep, base, t * 2) : mix(base, top, (t - 0.5) * 2);
-  if (pink > 0) c = mix(c, [255, 123, 223], Math.min(light ? 0.75 : 0.45, pink));
+  if (pink > 0) c = mix(c, [255, 123, 223], Math.min(maxPink, pink));
   return `rgb(${c[0] | 0},${c[1] | 0},${c[2] | 0})`;
 }
 
 type Blob = {
-  ax: number; ay: number;
-  rx: number; ry: number;
-  sx: number; sy: number;
-  px: number; py: number;
-  rad: number; w: number; tint: number;
-  lobes: number; lph: number; lamp: number; lspd: number;
+  ax: number;
+  ay: number;
+  rx: number;
+  ry: number;
+  sx: number;
+  sy: number;
+  px: number;
+  py: number;
+  rad: number;
+  w: number;
+  tint: number;
+  lobes: number;
+  lph: number;
+  lamp: number;
+  lspd: number;
 };
 
 type Field = {
-  cols: number; rows: number;
+  cols: number;
+  rows: number;
   blobs: Blob[];
   trail: { x: number; y: number; t: number }[];
   ox: number;
@@ -88,20 +107,27 @@ export type MosaicOptions = {
   hue?: string | null;
   /** Anchor tiles to the right edge (for gutters on the left of the page). */
   alignRight?: boolean;
+  /**
+   * How strongly the pink accent reads, as a multiplier on the base field.
+   * 1 leaves it as a hint; higher values widen the pink blobs, deepen the
+   * tint, and raise the ceiling on how far a tile can shift off blue.
+   */
+  pinkBoost?: number;
 };
 
 function tintsFor({ seedIndex, light, hue }: MosaicOptions): number[] {
   if (hue) return [0, 0, -1, 0, 0, -1];
   if (light) return [0, 1, 0, 1, 0, 1];
-  // The first full mosaic on the page gets extra pink so the accent reads
-  // immediately; later ones are calmer.
-  return seedIndex === 0 ? [1, 1, -1, 1, 0, -1] : [0, 0, -1, 1, 0, -1];
+  // The first full mosaic leans pink — four accent blobs against a single
+  // deep-blue one, where later mosaics stay mostly blue and calm.
+  return seedIndex === 0 ? [1, 1, 1, 1, 0, -1] : [0, 0, -1, 1, 0, -1];
 }
 
 function buildField(w: number, h: number, opts: MosaicOptions): Field {
   const cols = Math.ceil(w / TILE);
   const rows = Math.ceil(h / TILE);
   const tints = tintsFor(opts);
+  const pinkBoost = opts.pinkBoost ?? 1;
 
   let seed = (opts.seedIndex + 1) * 1013904223;
   const rnd = () => {
@@ -121,9 +147,13 @@ function buildField(w: number, h: number, opts: MosaicOptions): Field {
       sy: 0.012 + rnd() * 0.02,
       px: rnd() * 6.28,
       py: rnd() * 6.28,
-      // Pink blobs stay small and dim so the accent reads as a hint.
-      rad: tint === 1 ? cols * 0.14 + rnd() * cols * 0.1 : cols * 0.3 + rnd() * cols * 0.25,
-      w: tint === 1 ? 0.35 + rnd() * 0.15 : 0.6 + rnd() * 0.4,
+      // Pink blobs are small and dim by default so the accent reads as a
+      // hint; pinkBoost widens and strengthens them.
+      rad:
+        tint === 1
+          ? (cols * 0.14 + rnd() * cols * 0.1) * pinkBoost
+          : cols * 0.3 + rnd() * cols * 0.25,
+      w: tint === 1 ? (0.35 + rnd() * 0.15) * pinkBoost : 0.6 + rnd() * 0.4,
       tint,
       lobes: 2 + Math.floor(rnd() * 3),
       lph: rnd() * 6.28,
@@ -171,6 +201,10 @@ function paint(entry: Entry, now: number) {
 
   const light = !!entry.opts.light;
   const pal = entry.opts.hue ? paletteFromHue(entry.opts.hue) : null;
+  const pinkBoost = entry.opts.pinkBoost ?? 1;
+  // Ceiling on how far a tile can shift off the blue ramp. Capped short of 1
+  // so the field never flattens into solid pink.
+  const maxPink = light ? 0.75 : Math.min(0.85, 0.45 * pinkBoost);
 
   const pos = field.blobs.map((b) => ({
     x: b.ax + b.rx * Math.sin(now * b.sx * 6.28 + b.px),
@@ -184,7 +218,8 @@ function paint(entry: Entry, now: number) {
   }));
 
   // Fade out the pointer wake: quick ignite, slow decay.
-  while (field.trail.length && now - field.trail[0].t > TRAIL_MS) field.trail.shift();
+  while (field.trail.length && now - field.trail[0].t > TRAIL_MS)
+    field.trail.shift();
   const wake: { x: number; y: number; w: number }[] = [];
   for (const p of field.trail) {
     const age = now - p.t;
@@ -216,13 +251,15 @@ function paint(entry: Entry, now: number) {
         const rr = p.rad * (1 + p.lamp * Math.sin(p.lobes * ang + p.lph));
         const f = p.w * Math.exp(-(dx * dx + dy * dy) / (rr * rr));
 
-        if (p.tint === 1) pink += f * 0.35;
+        if (p.tint === 1) pink += f * 0.35 * pinkBoost;
         else if (p.tint === -1) dark += f;
         else bright += f;
       }
 
-      const v = light ? 0.5 + bright * 0.6 - dark * 0.25 : 0.5 + bright * 0.75 - dark * 0.7;
-      ctx.fillStyle = shade(v, light ? pink * 1.6 : pink, light, pal);
+      const v = light
+        ? 0.5 + bright * 0.6 - dark * 0.25
+        : 0.5 + bright * 0.75 - dark * 0.7;
+      ctx.fillStyle = shade(v, light ? pink * 1.6 : pink, light, pal, maxPink);
       // +1 on the size closes the seams between tiles.
       ctx.fillRect(c * TILE + field.ox, r * TILE, TILE + 1, TILE + 1);
     }
@@ -259,8 +296,12 @@ export function registerMosaic(
 
   // Gutter mosaics live inside pointer-events:none wrappers, so they can't
   // receive their own events — listen on the document instead.
-  const host: Document | HTMLElement = opts.light ? document : (canvas.parentElement ?? document);
-  host.addEventListener("pointermove", onMove as EventListener, { passive: true });
+  const host: Document | HTMLElement = opts.light
+    ? document
+    : (canvas.parentElement ?? document);
+  host.addEventListener("pointermove", onMove as EventListener, {
+    passive: true,
+  });
 
   if (raf === null) raf = requestAnimationFrame(loop);
 
