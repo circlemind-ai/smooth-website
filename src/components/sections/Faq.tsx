@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { faqs } from "@/lib/content";
+import { faqs, urls } from "@/lib/content";
 import { Rail } from "@/components/ui/Rail";
 
 export function Faq() {
@@ -18,7 +18,9 @@ export function Faq() {
           <p className="m-0 text-[14.5px] leading-[1.65] text-pretty text-dim">
             anything else?{" "}
             <a
-              href="#"
+              href={urls.booking}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-dim underline decoration-dotted underline-offset-[3px]"
             >
               reach out

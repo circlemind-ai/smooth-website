@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/Button";
 import { AgentsPanel } from "@/components/sections/AgentsPanel";
 import { Rail } from "@/components/ui/Rail";
+import { urls } from "@/lib/content";
 
 /** Y Combinator mark — a 16px orange tile, drawn rather than shipped as an asset. */
 function YcMark() {
@@ -27,10 +28,10 @@ export function Hero() {
         </p>
 
         <div className="mt-7 flex items-center gap-3 max-md:flex-col max-md:items-start">
-          <Button href="#" variant="primary">
+          <Button href={urls.app} variant="primary">
             Start for free
           </Button>
-          <Button href="#" variant="secondary">
+          <Button href={urls.booking} variant="secondary" target="_blank" rel="noopener noreferrer">
             Talk to us
           </Button>
           <span className="ml-2.5 inline-flex items-center gap-2 font-mono text-[11px] tracking-[0.06em] text-dim uppercase max-md:ml-0">

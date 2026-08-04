@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { urls } from "@/lib/content";
 
 /**
  * The product pitch that closes every article. Rendered by the article
@@ -17,7 +18,7 @@ export function PostCta() {
         run your first task in four lines.
       </p>
       <Link
-        href="#"
+        href={urls.app}
         className="font-mono text-[13px] font-medium text-accent underline decoration-dotted underline-offset-[3px] transition-colors hover:text-accent-deep"
       >
         Start for free →

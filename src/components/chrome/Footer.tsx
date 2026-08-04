@@ -20,6 +20,8 @@ export function Footer() {
                 <Link
                   key={l.label}
                   href={l.href}
+                  target={l.external ? "_blank" : undefined}
+                  rel={l.external ? "noopener noreferrer" : undefined}
                   className="text-dim transition-colors hover:text-ink"
                 >
                   {l.label}
@@ -47,6 +49,8 @@ export function Footer() {
                 <Link
                   key={l.label}
                   href={l.href}
+                  target={l.external ? "_blank" : undefined}
+                  rel={l.external ? "noopener noreferrer" : undefined}
                   className="text-mute transition-colors hover:text-ink"
                 >
                   {l.label}

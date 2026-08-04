@@ -5,6 +5,7 @@ import { TileMosaic } from "@/components/ui/TileMosaic";
 import { TitleBar } from "@/components/ui/BrowserWindow";
 import { useCopy } from "@/hooks/useCopy";
 import { Rail } from "@/components/ui/Rail";
+import { urls } from "@/lib/content";
 import {
   pythonSample,
   pythonText,
@@ -73,7 +74,7 @@ export function ForDevsIde() {
             get started in minutes
           </p>
           <a
-            href="#"
+            href={urls.docs}
             className="self-start font-mono text-[12.5px] text-ink underline decoration-dotted underline-offset-[3px] transition-colors hover:text-accent"
           >
             see docs →

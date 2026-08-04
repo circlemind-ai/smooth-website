@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { Rail } from "@/components/ui/Rail";
+import { urls } from "@/lib/content";
 
 export function Cta() {
   return (
@@ -9,10 +10,10 @@ export function Cta() {
           build reliable web agents
         </h2>
         <div className="flex gap-3 max-md:flex-col max-md:items-start">
-          <Button href="#" variant="primary">
+          <Button href={urls.app} variant="primary">
             Start for free
           </Button>
-          <Button href="#" variant="secondary">
+          <Button href={urls.booking} variant="secondary" target="_blank" rel="noopener noreferrer">
             Talk to us
           </Button>
         </div>

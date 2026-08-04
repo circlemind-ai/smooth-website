@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 import { Logo } from "@/components/chrome/Logo";
-import { navLinks } from "@/lib/content";
+import { navLinks, urls } from "@/lib/content";
 import { Rail } from "@/components/ui/Rail";
 
 export function Nav() {
@@ -44,12 +44,12 @@ export function Nav() {
         {/* account actions */}
         <div className="flex items-center gap-2.5 max-md:hidden">
           <Link
-            href="#"
+            href={urls.app}
             className="px-3.5 py-2 font-mono text-[12.5px] text-dim transition-colors hover:text-ink"
           >
             Sign In
           </Link>
-          <Button href="#" variant="nav">
+          <Button href={urls.app} variant="nav">
             Sign Up
           </Button>
         </div>
@@ -85,12 +85,12 @@ export function Nav() {
 
           <div className="flex gap-2.5 px-7 pt-2.5 pb-1.5">
             <Link
-              href="#"
+              href={urls.app}
               className="border border-line px-3.5 py-2 font-mono text-[12.5px] text-dim"
             >
               Sign In
             </Link>
-            <Button href="#" variant="nav">
+            <Button href={urls.app} variant="nav">
               Sign Up
             </Button>
           </div>

@@ -7,7 +7,24 @@
  * through JSX.
  */
 
-export type Link = { label: string; href: string };
+/**
+ * Every off-site destination, in one place. Components reference these rather
+ * than embedding URLs, so a domain move is a single edit here.
+ */
+export const urls = {
+  /** dashboard / sign-in / sign-up */
+  app: "https://app.smooth.sh",
+  docs: "https://docs.smooth.sh",
+  booking: "https://calendly.com/smooth-sh/talk-to-us",
+  github: "https://github.com/circlemind-ai",
+  linkedin: "https://www.linkedin.com/company/circlemindai",
+  x: "https://x.com/circlemind_ai",
+  privacy: "https://app.smooth.sh/privacy",
+  terms: "https://app.smooth.sh/terms",
+} as const;
+
+/** `external` opens in a new tab and adds the rel guard. */
+export type Link = { label: string; href: string; external?: boolean };
 
 /**
  * Not currently surfaced — the platform dropdown is hidden from the nav.
@@ -23,7 +40,7 @@ export const platformLinks: Link[] = [
 ];
 
 export const navLinks: Link[] = [
-  { label: "docs", href: "#" },
+  { label: "docs", href: urls.docs },
   { label: "pricing", href: "/pricing" },
   { label: "blog", href: "/blog" },
 ];
@@ -56,9 +73,9 @@ export const footerColumns: { title: string; links: Link[] }[] = [
   {
     title: "Developers",
     links: [
-      { label: "Documentation", href: "#" },
+      { label: "Documentation", href: urls.docs },
       { label: "API Reference", href: "#" },
-      { label: "Dashboard", href: "#" },
+      { label: "Dashboard", href: urls.app },
       { label: "Changelog", href: "#" },
       { label: "Status", href: "#" },
       { label: "Python SDK", href: "#" },
@@ -79,8 +96,8 @@ export const footerColumns: { title: string; links: Link[] }[] = [
   {
     title: "Legal",
     links: [
-      { label: "Terms of Service", href: "#" },
-      { label: "Privacy Policy", href: "#" },
+      { label: "Terms of Service", href: urls.terms },
+      { label: "Privacy Policy", href: urls.privacy },
       { label: "Subprocessors", href: "#" },
       { label: "SLA", href: "#" },
     ],
@@ -91,9 +108,9 @@ export const footerColumns: { title: string; links: Link[] }[] = [
       { label: "Team Email", href: "#" },
       { label: "Sales", href: "#" },
       { label: "Support", href: "#" },
-      { label: "GitHub", href: "#" },
-      { label: "LinkedIn", href: "#" },
-      { label: "X.com", href: "#" },
+      { label: "GitHub", href: urls.github, external: true },
+      { label: "LinkedIn", href: urls.linkedin, external: true },
+      { label: "X.com", href: urls.x, external: true },
     ],
   },
 ];
@@ -101,7 +118,7 @@ export const footerColumns: { title: string; links: Link[] }[] = [
 export const footerBottomLinks: Link[] = [
   { label: "Legal", href: "#" },
   { label: "Trust Center", href: "#" },
-  { label: "Privacy Policy", href: "#" },
+  { label: "Privacy Policy", href: urls.privacy },
 ];
 
 export const faqs: { q: string; a: string }[] = [
@@ -205,7 +222,7 @@ export const plans: Plan[] = [
     per: "",
     features: ["free welcome credits", "2 concurrent browsers", "$0.005/step"],
     cta: "Start for free",
-    href: "#",
+    href: urls.app,
     variant: "secondary",
     delay: 0,
   },
@@ -223,7 +240,7 @@ export const plans: Plan[] = [
       "$0.005/step",
     ],
     cta: "Start for free",
-    href: "#",
+    href: urls.app,
     variant: "primary",
     delay: 70,
   },
@@ -239,7 +256,7 @@ export const plans: Plan[] = [
       "24/7 support from the founders",
     ],
     cta: "Start for free",
-    href: "#",
+    href: urls.app,
     variant: "secondary",
     delay: 140,
   },
@@ -251,7 +268,7 @@ export const plans: Plan[] = [
     per: "",
     features: [],
     cta: "Talk to us",
-    href: "#",
+    href: urls.booking,
     variant: "secondary",
     delay: 210,
   },
