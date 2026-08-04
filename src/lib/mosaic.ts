@@ -32,6 +32,12 @@ const hexRgb = (hex: string): RGB => [
   parseInt(hex.slice(5, 7), 16),
 ];
 
+const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+
+/** Snap a 0-1 value to one of `steps` evenly spaced levels. */
+const quantise = (v: number, steps: number) =>
+  Math.round(v * (steps - 1)) / (steps - 1);
+
 type Palette = { deep: RGB; base: RGB; top: RGB };
 
 /** Derive a three-stop ramp from a single accent colour. */
@@ -107,6 +113,14 @@ export type MosaicOptions = {
   hue?: string | null;
   /** Anchor tiles to the right edge (for gutters on the left of the page). */
   alignRight?: boolean;
+  /**
+   * Snap shading to this many discrete levels. The blobs span 16-30 tiles, so
+   * the field barely moves across a single 21px tile and the mosaic reads as a
+   * smooth wash with the grid invisible. Quantising makes adjacent tiles
+   * either match exactly or jump a full step, which is what makes the tiles
+   * legible as tiles. 0 leaves the ramp continuous.
+   */
+  steps?: number;
   /**
    * How strongly the pink accent reads, as a multiplier on the base field.
    * 1 leaves it as a hint; higher values widen the pink blobs, deepen the
@@ -205,6 +219,7 @@ function paint(entry: Entry, now: number) {
   // Ceiling on how far a tile can shift off the blue ramp. Capped short of 1
   // so the field never flattens into solid pink.
   const maxPink = light ? 0.75 : Math.min(0.85, 0.45 * pinkBoost);
+  const steps = entry.opts.steps ?? 0;
 
   const pos = field.blobs.map((b) => ({
     x: b.ax + b.rx * Math.sin(now * b.sx * 6.28 + b.px),
@@ -256,10 +271,17 @@ function paint(entry: Entry, now: number) {
         else bright += f;
       }
 
-      const v = light
+      let v = light
         ? 0.5 + bright * 0.6 - dark * 0.25
         : 0.5 + bright * 0.75 - dark * 0.7;
-      ctx.fillStyle = shade(v, light ? pink * 1.6 : pink, light, pal, maxPink);
+      let pinkAmt = Math.min(maxPink, light ? pink * 1.6 : pink);
+
+      if (steps > 1) {
+        v = quantise(clamp01(v), steps);
+        pinkAmt = quantise(pinkAmt, steps);
+      }
+
+      ctx.fillStyle = shade(v, pinkAmt, light, pal, maxPink);
       // +1 on the size closes the seams between tiles.
       ctx.fillRect(c * TILE + field.ox, r * TILE, TILE + 1, TILE + 1);
     }
