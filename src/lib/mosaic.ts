@@ -127,21 +127,47 @@ export type MosaicOptions = {
    * tint, and raise the ceiling on how far a tile can shift off blue.
    */
   pinkBoost?: number;
+  /**
+   * How many drifting blobs make up the field. More means a busier, more
+   * broken-up surface. Costs a pass per blob per tile each frame, so this is
+   * the main performance dial. Rounded to a multiple of the 6-tint pattern so
+   * the colour mix stays in proportion.
+   */
+  blobCount?: number;
+  /** Multiplier on the drift rate. 1 is the base ambient pace. */
+  speed?: number;
 };
 
-function tintsFor({ seedIndex, light, hue }: MosaicOptions): number[] {
-  if (hue) return [0, 0, -1, 0, 0, -1];
-  if (light) return [0, 1, 0, 1, 0, 1];
-  // The first full mosaic leans pink — four accent blobs against a single
-  // deep-blue one, where later mosaics stay mostly blue and calm.
-  return seedIndex === 0 ? [1, 1, 1, 1, 0, -1] : [0, 0, -1, 1, 0, -1];
+/**
+ * The six-blob tint pattern, repeated to cover `count` blobs. Cycling rather
+ * than generating keeps the proportion of pink to white to deep-blue fixed
+ * however many blobs a mosaic asks for.
+ */
+function tintsFor(
+  { seedIndex, light, hue }: MosaicOptions,
+  count: number,
+): number[] {
+  const pattern = hue
+    ? [0, 0, -1, 0, 0, -1]
+    : light
+      ? [0, 1, 0, 1, 0, 1]
+      : // The first full mosaic leans pink — four accent blobs against a
+        // single deep-blue one, where later ones stay mostly blue and calm.
+        seedIndex === 0
+        ? [1, 1, 1, 1, 0, -1]
+        : [0, 0, -1, 1, 0, -1];
+
+  return Array.from({ length: count }, (_, i) => pattern[i % pattern.length]);
 }
 
 function buildField(w: number, h: number, opts: MosaicOptions): Field {
   const cols = Math.ceil(w / TILE);
   const rows = Math.ceil(h / TILE);
-  const tints = tintsFor(opts);
+  // Round to whole cycles of the 6-tint pattern so the colour mix holds.
+  const count = Math.max(1, Math.round((opts.blobCount ?? 6) / 6)) * 6;
+  const tints = tintsFor(opts, count);
   const pinkBoost = opts.pinkBoost ?? 1;
+  const speed = opts.speed ?? 1;
 
   let seed = (opts.seedIndex + 1) * 1013904223;
   const rnd = () => {
@@ -150,15 +176,15 @@ function buildField(w: number, h: number, opts: MosaicOptions): Field {
   };
 
   const blobs: Blob[] = [];
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < count; i++) {
     const tint = tints[i];
     blobs.push({
-      ax: (i + 0.5) * (cols / 6) + (rnd() - 0.5) * cols * 0.15,
+      ax: (i + 0.5) * (cols / count) + (rnd() - 0.5) * cols * 0.15,
       ay: rnd() * rows,
       rx: cols * (0.2 + rnd() * 0.3),
       ry: rows * (0.25 + rnd() * 0.4),
-      sx: 0.015 + rnd() * 0.025,
-      sy: 0.012 + rnd() * 0.02,
+      sx: (0.015 + rnd() * 0.025) * speed,
+      sy: (0.012 + rnd() * 0.02) * speed,
       px: rnd() * 6.28,
       py: rnd() * 6.28,
       // Pink blobs are small and dim by default so the accent reads as a
@@ -213,6 +239,13 @@ function paint(entry: Entry, now: number) {
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
+  // Each blob adds to the same accumulators, so a denser field would drive the
+  // value past the ends of the ramp and clamp whole regions flat — the exact
+  // opposite of the quantising above. Damping by sqrt of the ratio to the base
+  // six keeps the amplitude in range while preserving the extra detail; at six
+  // blobs it is exactly 1 and changes nothing.
+  const energy = Math.sqrt(6 / field.blobs.length);
+
   const light = !!entry.opts.light;
   const pal = entry.opts.hue ? paletteFromHue(entry.opts.hue) : null;
   const pinkBoost = entry.opts.pinkBoost ?? 1;
@@ -266,9 +299,9 @@ function paint(entry: Entry, now: number) {
         const rr = p.rad * (1 + p.lamp * Math.sin(p.lobes * ang + p.lph));
         const f = p.w * Math.exp(-(dx * dx + dy * dy) / (rr * rr));
 
-        if (p.tint === 1) pink += f * 0.35 * pinkBoost;
-        else if (p.tint === -1) dark += f;
-        else bright += f;
+        if (p.tint === 1) pink += f * 0.35 * pinkBoost * energy;
+        else if (p.tint === -1) dark += f * energy;
+        else bright += f * energy;
       }
 
       let v = light
