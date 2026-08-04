@@ -17,7 +17,11 @@ const plain = (t: string): Token => ({ t });
 const apiKey = (
   // Right-anchored: this sits deep into the line, so a left-anchored panel
   // would run off the editor.
-  <SpecTip key="key" align="right" tip="sign up to get a free key, no credit card required">
+  <SpecTip
+    key="key"
+    align="right"
+    tip="sign up to get a free key, no credit card required"
+  >
     <span style={{ color: "#1063B6" }}>&lt;your-api-key&gt;</span>
   </SpecTip>
 );
@@ -25,19 +29,48 @@ const apiKey = (
 export const pythonSample: Line[] = [
   [kw("from"), plain(" smooth "), kw("import"), plain(" SmoothClient")],
   [],
-  [plain("client = SmoothClient(api_key="), str('"'), apiKey, str('"'), plain(")")],
+  [
+    plain("client = SmoothClient(api_key="),
+    str('"'),
+    apiKey,
+    str('"'),
+    plain(")"),
+  ],
   [],
   [kw("with"), plain(" client.session() "), kw("as"), plain(" session:")],
-  [plain("    "), kw("print"), plain("(f"), str('"Live URL: {session.live_url()}"'), plain(")")],
+  [
+    plain("    "),
+    kw("print"),
+    plain("(f"),
+    str('"Live URL: {session.live_url()}"'),
+    plain(")"),
+  ],
   [],
   [plain("    session.goto("), str('"smooth.sh"'), plain(")")],
-  [plain("    task = session.run_task("), str('"find the pricing"'), plain(")")],
+  [
+    plain("    task = session.run_task("),
+    str('"find the pricing"'),
+    plain(")"),
+  ],
   [],
-  [plain("    "), kw("print"), plain("(f"), str('"Agent response: {task.output}"'), plain(")")],
+  [
+    plain("    "),
+    kw("print"),
+    plain("(f"),
+    str('"Agent response: {task.output}"'),
+    plain(")"),
+  ],
 ];
 
 export const typescriptSample: Line[] = [
-  [kw("import"), plain(" { SmoothClient } "), kw("from"), plain(" "), str('"smooth"'), plain(";")],
+  [
+    kw("import"),
+    plain(" { SmoothClient } "),
+    kw("from"),
+    plain(" "),
+    str('"smooth"'),
+    plain(";"),
+  ],
   [],
   [
     plain("const client = "),
@@ -50,10 +83,20 @@ export const typescriptSample: Line[] = [
   ],
   [],
   [plain("const session = "), kw("await"), plain(" client.session();")],
-  [plain("console.log("), str("`Live URL: ${session.live_url()}`"), plain(");")],
+  [
+    plain("console.log("),
+    str("`Live URL: ${session.live_url()}`"),
+    plain(");"),
+  ],
   [],
   [kw("await"), plain(" session.goto("), str('"smooth.sh"'), plain(");")],
-  [plain("const task = "), kw("await"), plain(" session.run_task("), str('"find the pricing"'), plain(");")],
+  [
+    plain("const task = "),
+    kw("await"),
+    plain(" session.run_task("),
+    str('"find the pricing"'),
+    plain(");"),
+  ],
   [],
   [plain("console.log("), str("`Agent response: ${task.output}`"), plain(");")],
   [kw("await"), plain(" session.close();")],

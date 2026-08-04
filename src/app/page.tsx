@@ -1,4 +1,3 @@
-import { RevealObserver } from "@/components/ui/RevealObserver";
 import { DividerStrip } from "@/components/chrome/DividerStrip";
 import { Hero } from "@/components/sections/Hero";
 import { OverviewTerminal } from "@/components/sections/OverviewTerminal";
@@ -21,7 +20,6 @@ import { Cta } from "@/components/sections/Cta";
 export default function Home() {
   return (
     <>
-      <RevealObserver />
       <main>
         <Hero />
         <OverviewTerminal />

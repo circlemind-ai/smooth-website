@@ -56,11 +56,12 @@ export function OverviewTerminal() {
                     width={420}
                     tip={
                       <>
-                        we use small models specialized in web tasks instead of giant
-                        general-purpose LLMs
+                        we use small models specialized in web tasks instead of
+                        giant general-purpose LLMs
                         <TipGif
                           src="/assets/comparison.gif"
                           alt="Smooth vs alternatives — flight search comparison"
+                          aspectRatio={800 / 450}
                           className="mt-2 block w-full border border-[rgba(222,238,255,0.25)]"
                         />
                       </>
@@ -92,7 +93,10 @@ export function OverviewTerminal() {
                     <span className="tri tri-fwd" />
                   </span>
 
-                  <HatchBox grow className="block px-[22px] pt-[26px] pb-[22px]">
+                  <HatchBox
+                    grow
+                    className="block px-[22px] pt-[26px] pb-[22px]"
+                  >
                     <span className="absolute -top-[0.7em] left-[18px] bg-paper px-2 font-bold text-accent">
                       smooth
                     </span>

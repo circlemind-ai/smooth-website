@@ -11,11 +11,7 @@ import { cellColor, compareColumns, compareRows } from "@/lib/content";
  */
 export function CompareTable() {
   return (
-    <div
-      data-reveal
-      data-delay="80"
-      className="overflow-x-auto border border-line"
-    >
+    <div className="overflow-x-auto border border-line">
       <table className="w-full min-w-[560px] table-fixed border-collapse">
         <colgroup>
           <col className="w-[38%] min-w-[200px]" />
@@ -30,7 +26,11 @@ export function CompareTable() {
               <span className="sr-only">Feature</span>
             </th>
             {compareColumns.map((col) => (
-              <th key={col} scope="col" className="px-3.5 py-3 text-center font-semibold">
+              <th
+                key={col}
+                scope="col"
+                className="px-3.5 py-3 text-center font-semibold"
+              >
                 {col}
               </th>
             ))}

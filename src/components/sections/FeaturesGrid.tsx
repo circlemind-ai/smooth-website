@@ -13,7 +13,13 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
  */
 
 /** A data packet in transit: dithered square in a white chip. */
-function Packet({ color, style }: { color: string; style?: React.CSSProperties }) {
+function Packet({
+  color,
+  style,
+}: {
+  color: string;
+  style?: React.CSSProperties;
+}) {
   return (
     <span
       className="fa absolute z-[1] box-border h-3 w-3 border border-hair bg-paper p-0.5"
@@ -31,7 +37,15 @@ function Packet({ color, style }: { color: string; style?: React.CSSProperties }
 }
 
 /** Perforated track the packets ride along. */
-function Track({ top, left, width }: { top: number; left: string; width: string }) {
+function Track({
+  top,
+  left,
+  width,
+}: {
+  top: number;
+  left: string;
+  width: string;
+}) {
   return (
     <div
       className="absolute h-[5px]"
@@ -39,7 +53,8 @@ function Track({ top, left, width }: { top: number; left: string; width: string 
         top,
         left,
         width,
-        backgroundImage: "radial-gradient(circle at 2.5px 2.5px, #B6B6B6 0.9px, transparent 1px)",
+        backgroundImage:
+          "radial-gradient(circle at 2.5px 2.5px, #B6B6B6 0.9px, transparent 1px)",
         backgroundSize: "5px 5px",
       }}
     />
@@ -47,12 +62,10 @@ function Track({ top, left, width }: { top: number; left: string; width: string 
 }
 
 function Card({
-  delay,
   title,
   featon,
   children,
 }: {
-  delay: number;
   title: ReactNode;
   featon?: boolean;
   children: ReactNode;
@@ -63,11 +76,7 @@ function Card({
         featon ? "featon" : ""
       }`}
     >
-      <div
-        data-reveal
-        data-delay={delay}
-        className="flex h-[180px] items-center justify-center overflow-hidden"
-      >
+      <div className="flex h-[180px] items-center justify-center overflow-hidden">
         {children}
       </div>
       <h4 className="mt-3.5 mb-0 font-mono text-[14.5px] font-semibold tracking-[-0.01em]">
@@ -80,11 +89,35 @@ function Card({
 /** Traffic converging on a single always-on box. */
 function Serverless() {
   const tracks = [
-    { top: 29, left: "20%", width: "60%", color: "#E58A3A", anim: "faslide 5s linear -1.5s infinite" },
-    { top: 43, left: "10%", width: "80%", color: "#59ABFF", anim: "faslide 4.2s linear -3.1s infinite" },
+    {
+      top: 29,
+      left: "20%",
+      width: "60%",
+      color: "#E58A3A",
+      anim: "faslide 5s linear -1.5s infinite",
+    },
+    {
+      top: 43,
+      left: "10%",
+      width: "80%",
+      color: "#59ABFF",
+      anim: "faslide 4.2s linear -3.1s infinite",
+    },
     { top: 57, left: "0%", width: "100%", color: null, anim: null },
-    { top: 71, left: "10%", width: "80%", color: "#7CB342", anim: "faslide 4.6s linear -0.9s infinite" },
-    { top: 85, left: "20%", width: "60%", color: "#FF7BDF", anim: "faslide 5.4s linear -3.8s infinite" },
+    {
+      top: 71,
+      left: "10%",
+      width: "80%",
+      color: "#7CB342",
+      anim: "faslide 4.6s linear -0.9s infinite",
+    },
+    {
+      top: 85,
+      left: "20%",
+      width: "60%",
+      color: "#FF7BDF",
+      anim: "faslide 5.4s linear -3.8s infinite",
+    },
   ];
 
   return (
@@ -93,7 +126,10 @@ function Serverless() {
         <div key={t.top} className="contents">
           <Track top={t.top} left={t.left} width={t.width} />
           {t.color && (
-            <div className="absolute h-[5px]" style={{ top: t.top, left: t.left, width: t.width }}>
+            <div
+              className="absolute h-[5px]"
+              style={{ top: t.top, left: t.left, width: t.width }}
+            >
               <Packet
                 color={t.color}
                 style={{
@@ -166,13 +202,19 @@ function BehindLogins() {
     <div className="fc relative" style={{ width: 150, height: 112 }}>
       <div className={label}>email</div>
       <div className={`${field} mb-2`}>
-        <span className={typed} style={{ animation: "fatype1 4.2s steps(12, end) infinite" }}>
+        <span
+          className={typed}
+          style={{ animation: "fatype1 4.2s steps(12, end) infinite" }}
+        >
           dev@acme.com
         </span>
       </div>
       <div className={label}>password</div>
       <div className={`${field} mb-3`}>
-        <span className={typed} style={{ animation: "fatype2 4.2s steps(8, end) infinite" }}>
+        <span
+          className={typed}
+          style={{ animation: "fatype2 4.2s steps(8, end) infinite" }}
+        >
           ••••••••
         </span>
       </div>
@@ -214,26 +256,60 @@ function Observability() {
 
       <div className="mt-2 grid grid-cols-2 gap-2">
         <div className="flex flex-col gap-[3px] border border-hair bg-paper px-2 py-1.5">
-          <div className="font-mono text-[8px] tracking-[0.1em] text-mute">NETWORK</div>
-          <div className={line} style={{ color: "#1063B6", animation: "faln1 3.6s linear infinite" }}>
+          <div className="font-mono text-[8px] tracking-[0.1em] text-mute">
+            NETWORK
+          </div>
+          <div
+            className={line}
+            style={{
+              color: "#1063B6",
+              animation: "faln1 3.6s linear infinite",
+            }}
+          >
             GET /pricing 200
           </div>
-          <div className={line} style={{ color: "#1063B6", animation: "faln3 3.6s linear infinite" }}>
+          <div
+            className={line}
+            style={{
+              color: "#1063B6",
+              animation: "faln3 3.6s linear infinite",
+            }}
+          >
             POST /auth 201
           </div>
-          <div className={line} style={{ color: "#1063B6", animation: "faln5 3.6s linear infinite" }}>
+          <div
+            className={line}
+            style={{
+              color: "#1063B6",
+              animation: "faln5 3.6s linear infinite",
+            }}
+          >
             GET /api/plans 200
           </div>
         </div>
         <div className="flex flex-col gap-[3px] border border-hair bg-paper px-2 py-1.5">
-          <div className="font-mono text-[8px] tracking-[0.1em] text-mute">CONSOLE</div>
-          <div className={`${line} text-dim`} style={{ animation: "faln2 3.6s linear infinite" }}>
+          <div className="font-mono text-[8px] tracking-[0.1em] text-mute">
+            CONSOLE
+          </div>
+          <div
+            className={`${line} text-dim`}
+            style={{ animation: "faln2 3.6s linear infinite" }}
+          >
             page loaded
           </div>
-          <div className={`${line} text-dim`} style={{ animation: "faln4 3.6s linear infinite" }}>
+          <div
+            className={`${line} text-dim`}
+            style={{ animation: "faln4 3.6s linear infinite" }}
+          >
             cookie set
           </div>
-          <div className={line} style={{ color: "#7CB342", animation: "faln6 3.6s linear infinite" }}>
+          <div
+            className={line}
+            style={{
+              color: "#7CB342",
+              animation: "faln6 3.6s linear infinite",
+            }}
+          >
             task done ✓
           </div>
         </div>
@@ -269,13 +345,19 @@ function Captcha() {
   );
 }
 
-const RETURN_PATH = "M212,72 L212,94 Q212,102 204,102 L36,102 Q28,102 28,94 L28,72";
+const RETURN_PATH =
+  "M212,72 L212,94 Q212,102 204,102 L36,102 Q28,102 28,94 L28,72";
 
 /** Two isometric nodes trading packets over a private link. */
 function PrivateNetwork() {
   return (
     <div className="fc relative" style={{ width: 240, height: 122 }}>
-      <svg width="240" height="122" viewBox="0 0 240 122" className="absolute inset-0">
+      <svg
+        width="240"
+        height="122"
+        viewBox="0 0 240 122"
+        className="absolute inset-0"
+      >
         <path
           d="M60,45 L180,45"
           stroke="#B6B6B6"
@@ -293,18 +375,51 @@ function PrivateNetwork() {
           fill="none"
         />
         <g transform="translate(0,20)">
-          <path d="M28,0 L56,14 L28,28 L0,14 Z" fill="#FFFFFF" stroke="#C8C8C8" strokeWidth="1" />
-          <path d="M0,14 L28,28 L28,50 L0,36 Z" fill="#EDEDED" stroke="#C8C8C8" strokeWidth="1" />
-          <path d="M28,28 L56,14 L56,36 L28,50 Z" fill="#DBDBDB" stroke="#C8C8C8" strokeWidth="1" />
+          <path
+            d="M28,0 L56,14 L28,28 L0,14 Z"
+            fill="#FFFFFF"
+            stroke="#C8C8C8"
+            strokeWidth="1"
+          />
+          <path
+            d="M0,14 L28,28 L28,50 L0,36 Z"
+            fill="#EDEDED"
+            stroke="#C8C8C8"
+            strokeWidth="1"
+          />
+          <path
+            d="M28,28 L56,14 L56,36 L28,50 Z"
+            fill="#DBDBDB"
+            stroke="#C8C8C8"
+            strokeWidth="1"
+          />
         </g>
         <g transform="translate(184,20)">
-          <path d="M28,0 L56,14 L28,28 L0,14 Z" fill="#FFFFFF" stroke="#C8C8C8" strokeWidth="1" />
-          <path d="M0,14 L28,28 L28,50 L0,36 Z" fill="#BCDEFF" stroke="#C8C8C8" strokeWidth="1" />
-          <path d="M28,28 L56,14 L56,36 L28,50 Z" fill="#9BCDFF" stroke="#C8C8C8" strokeWidth="1" />
+          <path
+            d="M28,0 L56,14 L28,28 L0,14 Z"
+            fill="#FFFFFF"
+            stroke="#C8C8C8"
+            strokeWidth="1"
+          />
+          <path
+            d="M0,14 L28,28 L28,50 L0,36 Z"
+            fill="#BCDEFF"
+            stroke="#C8C8C8"
+            strokeWidth="1"
+          />
+          <path
+            d="M28,28 L56,14 L56,36 L28,50 Z"
+            fill="#9BCDFF"
+            stroke="#C8C8C8"
+            strokeWidth="1"
+          />
         </g>
       </svg>
 
-      <div className="absolute" style={{ left: 60, width: 120, top: 39, height: 12 }}>
+      <div
+        className="absolute"
+        style={{ left: 60, width: 120, top: 39, height: 12 }}
+      >
         <Packet
           color="#59ABFF"
           style={{
@@ -336,7 +451,8 @@ const VLINES = [
   "calc((100% - 42px)*2/3 + 42px)",
 ];
 
-const row = "grid grid-cols-3 gap-[21px] max-md:grid-cols-1 max-md:gap-0 max-md:[&>div+div]:border-t max-md:[&>div+div]:border-dashed max-md:[&>div+div]:border-line";
+const row =
+  "grid grid-cols-3 gap-[21px] max-md:grid-cols-1 max-md:gap-0 max-md:[&>div+div]:border-t max-md:[&>div+div]:border-dashed max-md:[&>div+div]:border-line";
 
 export function FeaturesGrid() {
   return (
@@ -350,13 +466,13 @@ export function FeaturesGrid() {
         <div className="h-[21px] border-b border-dashed border-line" />
 
         <div className={row}>
-          <Card delay={0} title="fully serverless" featon>
+          <Card title="fully serverless" featon>
             <Serverless />
           </Card>
-          <Card delay={70} title="enterprise ready">
+          <Card title="enterprise ready">
             <EnterpriseReady />
           </Card>
-          <Card delay={140} title="access behind logins">
+          <Card title="access behind logins">
             <BehindLogins />
           </Card>
         </div>
@@ -364,11 +480,10 @@ export function FeaturesGrid() {
         <div className="h-[21px] border-y border-dashed border-line" />
 
         <div className={row}>
-          <Card delay={0} title="observability and video recordings">
+          <Card title="observability and video recordings">
             <Observability />
           </Card>
           <Card
-            delay={70}
             title={
               <>
                 <SpecTip
@@ -385,7 +500,7 @@ export function FeaturesGrid() {
           >
             <Captcha />
           </Card>
-          <Card delay={140} title="access localhost and private networks">
+          <Card title="access localhost and private networks">
             <PrivateNetwork />
           </Card>
         </div>

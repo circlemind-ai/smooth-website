@@ -8,11 +8,7 @@ import type { Plan } from "@/lib/content";
  */
 export function PlanCard({ plan }: { plan: Plan }) {
   return (
-    <div
-      data-reveal
-      data-delay={plan.delay}
-      className="flex flex-col px-7 pt-[34px] pb-[30px]"
-    >
+    <div className="flex flex-col px-7 pt-[34px] pb-[30px]">
       <h2 className="m-0 font-mono text-[17px] font-semibold tracking-[-0.01em]">
         {plan.name}
       </h2>
@@ -22,14 +18,22 @@ export function PlanCard({ plan }: { plan: Plan }) {
       </p>
 
       <div className="mt-3.5 mb-[18px] font-mono">
-        <span className="text-[30px] font-semibold tracking-[-0.03em]">{plan.price}</span>
+        <span className="text-[30px] font-semibold tracking-[-0.03em]">
+          {plan.price}
+        </span>
         {plan.per && <span className="text-[12.5px] text-dim">{plan.per}</span>}
       </div>
 
       <ul className="m-0 flex flex-1 list-none flex-col gap-[9px] p-0">
         {plan.features.map((f) => (
-          <li key={f} className="flex items-baseline gap-[9px] text-[13.5px] leading-[1.5] text-ink">
-            <span aria-hidden className="shrink-0 font-mono text-[11px] text-accent">
+          <li
+            key={f}
+            className="flex items-baseline gap-[9px] text-[13.5px] leading-[1.5] text-ink"
+          >
+            <span
+              aria-hidden
+              className="shrink-0 font-mono text-[11px] text-accent"
+            >
               +
             </span>
             {f}

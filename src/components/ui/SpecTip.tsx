@@ -26,7 +26,9 @@ export function SpecTip({
   className?: string;
 }) {
   return (
-    <span className={`spec-tip ${align === "right" ? "tip-right" : ""} ${className}`}>
+    <span
+      className={`spec-tip ${align === "right" ? "tip-right" : ""} ${className}`}
+    >
       {children}
       <span
         className={`tipbox ${lines ? "tip-lines" : ""}`}

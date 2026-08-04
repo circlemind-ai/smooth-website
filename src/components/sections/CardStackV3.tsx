@@ -3,7 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import { TileMosaic } from "@/components/ui/TileMosaic";
 import { TitleBar } from "@/components/ui/BrowserWindow";
-import { StackCardBody, animsFor, NO_ANIM } from "@/components/cards/StackCards";
+import {
+  StackCardBody,
+  animsFor,
+  NO_ANIM,
+} from "@/components/cards/StackCards";
 import { stackItems } from "@/lib/content";
 import { Rail } from "@/components/ui/Rail";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -135,7 +139,10 @@ export function CardStackV3() {
                       <div
                         key={item.kind}
                         className="absolute inset-0 transition-opacity duration-[450ms]"
-                        style={{ opacity: on ? 1 : 0, pointerEvents: on ? "auto" : "none" }}
+                        style={{
+                          opacity: on ? 1 : 0,
+                          pointerEvents: on ? "auto" : "none",
+                        }}
                       >
                         <div className="absolute inset-0 flex flex-col border border-ink bg-paper shadow-[8px_8px_0_var(--color-card)]">
                           <TitleBar title={item.win} size="sm" />

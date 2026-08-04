@@ -5,7 +5,13 @@
  * Sits inside a Rail and spans it, so the rule meets the vertical rails on
  * both sides.
  */
-export function SectionHeading({ title, children }: { title: string; children: string }) {
+export function SectionHeading({
+  title,
+  children,
+}: {
+  title: string;
+  children: string;
+}) {
   return (
     <div className="border-b border-dashed border-line px-8 py-[72px]">
       <h3 className="m-0 font-mono text-[clamp(26px,3vw,38px)] font-semibold tracking-[-0.03em]">

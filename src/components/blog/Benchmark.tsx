@@ -4,7 +4,11 @@
  * Rows marked `highlight` render in accent and bold — that's how smooth's own
  * number is distinguished from the comparison set, rather than by position.
  */
-export type BenchmarkRow = { label: string; value: string; highlight?: boolean };
+export type BenchmarkRow = {
+  label: string;
+  value: string;
+  highlight?: boolean;
+};
 
 export function Benchmark({
   caption,
@@ -33,7 +37,9 @@ export function Benchmark({
             }`}
           >
             <span>{row.label}</span>
-            <span className={`text-right ${row.highlight ? "text-accent" : ""}`}>
+            <span
+              className={`text-right ${row.highlight ? "text-accent" : ""}`}
+            >
               {row.value}
             </span>
           </div>

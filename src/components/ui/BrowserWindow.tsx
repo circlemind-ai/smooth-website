@@ -26,7 +26,9 @@ export function TitleBar({
     <div
       ref={ref}
       className={`grid shrink-0 items-center border-b border-line bg-soft ${
-        sm ? "grid-cols-[44px_1fr_44px] px-3 py-2" : "grid-cols-[54px_1fr_54px] px-3.5 py-2.5"
+        sm
+          ? "grid-cols-[44px_1fr_44px] px-3 py-2"
+          : "grid-cols-[54px_1fr_54px] px-3.5 py-2.5"
       } ${className}`}
     >
       <span className={`inline-flex ${sm ? "gap-1.5" : "gap-[7px]"}`}>

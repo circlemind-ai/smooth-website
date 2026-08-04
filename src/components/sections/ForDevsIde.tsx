@@ -30,13 +30,18 @@ function Code({ lines }: { lines: Line[] }) {
     <span className="block px-4 pt-3.5 pr-4 pb-[18px] pl-2.5">
       {lines.map((line, i) => (
         <span key={i} className="flex gap-3.5">
-          <span className="w-4 shrink-0 text-right text-[#B6B6B6] select-none">{i + 1}</span>
+          <span className="w-4 shrink-0 text-right text-[#B6B6B6] select-none">
+            {i + 1}
+          </span>
           <span className="min-w-0">
             {line.length === 0
               ? " "
               : line.map((part, j) =>
                   isToken(part) ? (
-                    <span key={j} style={part.c ? { color: tokenColor[part.c] } : undefined}>
+                    <span
+                      key={j}
+                      style={part.c ? { color: tokenColor[part.c] } : undefined}
+                    >
                       {part.t}
                     </span>
                   ) : (
@@ -76,14 +81,14 @@ export function ForDevsIde() {
         </div>
 
         <div className="min-w-0 border-l border-dashed border-line max-md:border-l-0 max-md:border-t">
-          <div data-mosaic className="relative h-full overflow-hidden bg-[#BCDEFF]">
+          <div
+            data-mosaic
+            className="relative h-full overflow-hidden bg-[#BCDEFF]"
+          >
             <TileMosaic seedIndex={2} />
 
             <div className="relative px-8 py-10">
-              <div
-                data-reveal
-                className="mx-auto max-w-[780px] border border-ink bg-paper shadow-[8px_8px_0_var(--color-card)]"
-              >
+              <div className="mx-auto max-w-[780px] border border-ink bg-paper shadow-[8px_8px_0_var(--color-card)]">
                 <TitleBar
                   title={active.name}
                   right={
@@ -105,7 +110,9 @@ export function ForDevsIde() {
                         type="button"
                         onClick={() => setTab(i)}
                         className={`block w-full cursor-pointer px-4 py-1.5 text-left max-md:w-auto max-md:px-3 max-md:py-2.5 ${
-                          tab === i ? "bg-paper font-medium text-ink" : "text-dim"
+                          tab === i
+                            ? "bg-paper font-medium text-ink"
+                            : "text-dim"
                         }`}
                       >
                         {f.name}

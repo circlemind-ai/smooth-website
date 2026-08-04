@@ -32,7 +32,7 @@ export function AgentsPanel() {
   }, [open]);
 
   return (
-    <div ref={root} data-reveal data-delay="320" className="relative mt-[26px]">
+    <div ref={root} className="relative mt-[26px]">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}

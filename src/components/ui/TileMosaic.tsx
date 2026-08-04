@@ -22,7 +22,12 @@ export function TileMosaic({
 
   useEffect(() => {
     if (!ref.current) return;
-    handle.current = registerMosaic(ref.current, { seedIndex, light, hue, alignRight });
+    handle.current = registerMosaic(ref.current, {
+      seedIndex,
+      light,
+      hue,
+      alignRight,
+    });
     return () => {
       handle.current?.dispose();
       handle.current = null;

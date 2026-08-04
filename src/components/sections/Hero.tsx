@@ -15,30 +15,18 @@ export function Hero() {
   return (
     <header className="relative">
       <Rail className="px-8 pt-[72px] pb-14">
-        <h1
-          data-reveal
-          data-delay="80"
-          className="m-0 max-w-[700px] font-mono text-[clamp(30px,3.8vw,48px)] leading-[1.15] font-semibold tracking-[-0.03em]"
-        >
+        <h1 className="m-0 max-w-[700px] font-mono text-[clamp(30px,3.8vw,48px)] leading-[1.15] font-semibold tracking-[-0.03em]">
           <span className="whitespace-nowrap">build agents that</span>{" "}
           <span className="whitespace-nowrap">use the web</span>
         </h1>
 
-        <p
-          data-reveal
-          data-delay="160"
-          className="mt-[18px] max-w-[540px] text-[16.5px] leading-[1.6] text-pretty text-dim"
-        >
+        <p className="mt-[18px] max-w-[540px] text-[16.5px] leading-[1.6] text-pretty text-dim">
           we handle the infra so you can focus on building agents that{" "}
           <br className="max-md:hidden" />
           search, scrape, and interact&nbsp;with the web at scale
         </p>
 
-        <div
-          data-reveal
-          data-delay="240"
-          className="mt-7 flex items-center gap-3 max-md:flex-col max-md:items-start"
-        >
+        <div className="mt-7 flex items-center gap-3 max-md:flex-col max-md:items-start">
           <Button href="#" variant="primary">
             Start for free
           </Button>

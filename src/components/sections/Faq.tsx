@@ -12,19 +12,15 @@ export function Faq() {
     <section>
       <Rail className="grid grid-cols-[1fr_1.35fr] items-start gap-14 px-8 py-[88px] max-md:grid-cols-1">
         <div className="flex flex-col gap-3.5">
-          <h2
-            data-reveal
-            className="m-0 font-mono text-[clamp(26px,3vw,38px)] leading-[1.25] font-semibold tracking-[-0.02em]"
-          >
+          <h2 className="m-0 font-mono text-[clamp(26px,3vw,38px)] leading-[1.25] font-semibold tracking-[-0.02em]">
             faq
           </h2>
-          <p
-            data-reveal
-            data-delay="60"
-            className="m-0 text-[14.5px] leading-[1.65] text-pretty text-dim"
-          >
+          <p className="m-0 text-[14.5px] leading-[1.65] text-pretty text-dim">
             anything else?{" "}
-            <a href="#" className="text-dim underline decoration-dotted underline-offset-[3px]">
+            <a
+              href="#"
+              className="text-dim underline decoration-dotted underline-offset-[3px]"
+            >
               reach out
             </a>
           </p>
@@ -54,7 +50,10 @@ export function Faq() {
                 </button>
                 <div
                   className="overflow-hidden transition-[max-height,opacity] duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)]"
-                  style={{ maxHeight: isOpen ? 240 : 0, opacity: isOpen ? 1 : 0 }}
+                  style={{
+                    maxHeight: isOpen ? 240 : 0,
+                    opacity: isOpen ? 1 : 0,
+                  }}
                 >
                   <p className="m-0 px-1 pb-[22px] text-sm leading-[1.7] text-pretty text-dim">
                     {item.a}

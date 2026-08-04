@@ -19,16 +19,29 @@ export const mdxComponents: MDXComponents = {
     />
   ),
   h3: (props) => (
-    <h3 {...props} className="mt-6 mb-2 font-mono text-[15px] font-bold tracking-[-0.01em]" />
+    <h3
+      {...props}
+      className="mt-6 mb-2 font-mono text-[15px] font-bold tracking-[-0.01em]"
+    />
   ),
   p: (props) => <p {...props} className="mt-0 mb-4 text-pretty" />,
-  ul: (props) => <ul {...props} className="mt-0 mb-4 list-disc pl-[22px] leading-[1.75]" />,
-  ol: (props) => <ol {...props} className="mt-0 mb-4 list-decimal pl-[22px] leading-[1.75]" />,
+  ul: (props) => (
+    <ul {...props} className="mt-0 mb-4 list-disc pl-[22px] leading-[1.75]" />
+  ),
+  ol: (props) => (
+    <ol
+      {...props}
+      className="mt-0 mb-4 list-decimal pl-[22px] leading-[1.75]"
+    />
+  ),
   li: (props) => <li {...props} className="mb-2 last:mb-0" />,
   strong: (props) => <strong {...props} className="font-semibold" />,
   hr: () => <hr className="my-8 border-0 border-t border-dashed border-line" />,
   blockquote: (props) => (
-    <blockquote {...props} className="my-6 border-l-2 border-line pl-4 text-dim italic" />
+    <blockquote
+      {...props}
+      className="my-6 border-l-2 border-line pl-4 text-dim italic"
+    />
   ),
 
   a: ({ href = "#", ...props }) => (

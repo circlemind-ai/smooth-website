@@ -19,7 +19,13 @@ export type Anims = {
   a5: string;
 };
 
-export const NO_ANIM: Anims = { a1: "none", a2: "none", a3: "none", a4: "none", a5: "none" };
+export const NO_ANIM: Anims = {
+  a1: "none",
+  a2: "none",
+  a3: "none",
+  a4: "none",
+  a5: "none",
+};
 
 /** Per-card animation sets, keyed to the shared keyframes in globals.css. */
 export function animsFor(kind: StackKind): Anims {
@@ -67,7 +73,8 @@ const bar = (h: number, w: string, bg: string) => (
 function LoginCard({ anim }: { anim: Anims }) {
   const field =
     "mx-auto flex h-[22px] w-[52%] items-center border border-line bg-soft px-2 box-border";
-  const typed = "inline-block w-0 overflow-hidden font-mono text-[10px] whitespace-nowrap text-ink";
+  const typed =
+    "inline-block w-0 overflow-hidden font-mono text-[10px] whitespace-nowrap text-ink";
 
   return (
     <>
@@ -93,7 +100,13 @@ function LoginCard({ anim }: { anim: Anims }) {
         className="pointer-events-none absolute top-0 left-0 z-[3] opacity-0"
         style={{ animation: anim.a1 }}
       >
-        <Image src="/assets/cursor-arrow.svg" alt="" width={13} height={13} className="block" />
+        <Image
+          src="/assets/cursor-arrow.svg"
+          alt=""
+          width={13}
+          height={13}
+          className="block"
+        />
         <span className="absolute top-[11px] left-[11px] bg-accent px-1.5 py-px font-mono text-[8.5px] whitespace-nowrap text-paper">
           smooth
         </span>
@@ -106,7 +119,10 @@ function LoginCard({ anim }: { anim: Anims }) {
 function BlogCard({ anim, color }: { anim: Anims; color: string }) {
   return (
     <>
-      <div className="absolute inset-0 px-[18px] py-3.5" style={{ animation: anim.a2 }}>
+      <div
+        className="absolute inset-0 px-[18px] py-3.5"
+        style={{ animation: anim.a2 }}
+      >
         <div className="flex h-full gap-3.5">
           <div className="flex flex-[1.2] flex-col gap-2">
             {bar(11, "80%", "var(--color-card)")}
@@ -135,7 +151,11 @@ function BlogCard({ anim, color }: { anim: Anims; color: string }) {
 
       <div
         className="absolute top-0 right-0 left-0 z-[3] h-0.5 opacity-0"
-        style={{ animation: anim.a1, background: color, boxShadow: `0 0 10px ${color}` }}
+        style={{
+          animation: anim.a1,
+          background: color,
+          boxShadow: `0 0 10px ${color}`,
+        }}
       />
     </>
   );
@@ -151,20 +171,34 @@ function SearchCard({ anim, color }: { anim: Anims; color: string }) {
 
   return (
     <>
-      <div className="absolute inset-0 px-[18px] py-3" style={{ animation: anim.a4 }}>
+      <div
+        className="absolute inset-0 px-[18px] py-3"
+        style={{ animation: anim.a4 }}
+      >
         <div className="box-border flex h-[24px] w-[64%] items-center border border-line bg-soft px-[9px]">
-          <span className="font-mono text-[9.5px] text-dim">cheapest flight nyc → la</span>
+          <span className="font-mono text-[9.5px] text-dim">
+            cheapest flight nyc → la
+          </span>
         </div>
         <div>
           {results.map((r, i) => (
             <div key={i} className="opacity-0" style={{ animation: r.anim }}>
               <div
                 className={i === 0 ? "mt-3" : "mt-2.5"}
-                style={{ height: 7, width: r.title, background: color, opacity: 0.7 }}
+                style={{
+                  height: 7,
+                  width: r.title,
+                  background: color,
+                  opacity: 0.7,
+                }}
               />
               <div
                 className="mt-[5px]"
-                style={{ height: 6, width: r.sub, background: "var(--color-soft)" }}
+                style={{
+                  height: 6,
+                  width: r.sub,
+                  background: "var(--color-soft)",
+                }}
               />
             </div>
           ))}
@@ -188,7 +222,9 @@ function SearchCard({ anim, color }: { anim: Anims; color: string }) {
           {",\n    "}
           <span style={{ color }}>&quot;desc&quot;</span>
           {": "}
-          <span className="text-mute">&quot;Nonstop, 7:05am, refundable&quot;</span>
+          <span className="text-mute">
+            &quot;Nonstop, 7:05am, refundable&quot;
+          </span>
           {"\n  },\n  {\n    "}
           <span style={{ color }}>&quot;url&quot;</span>
           {": "}
@@ -213,7 +249,10 @@ function SearchCard({ anim, color }: { anim: Anims; color: string }) {
 function ExtractCard({ anim, color }: { anim: Anims; color: string }) {
   return (
     <>
-      <div className="absolute inset-0 px-[18px] py-3.5" style={{ animation: anim.a2 }}>
+      <div
+        className="absolute inset-0 px-[18px] py-3.5"
+        style={{ animation: anim.a2 }}
+      >
         <div className="mx-auto mb-2.5 h-[9px] w-[30%] bg-card" />
         <div className="flex h-[calc(100%-30px)] gap-2.5">
           {[0, 1, 2].map((i) => (
@@ -233,14 +272,21 @@ function ExtractCard({ anim, color }: { anim: Anims; color: string }) {
               />
               <div
                 className="absolute top-0 -right-0.5 -left-0.5 h-0.5 opacity-0"
-                style={{ background: color, boxShadow: `0 0 8px ${color}`, animation: anim.a4 }}
+                style={{
+                  background: color,
+                  boxShadow: `0 0 8px ${color}`,
+                  animation: anim.a4,
+                }}
               />
             </div>
           ))}
         </div>
       </div>
 
-      <div className="absolute inset-0 px-[18px] py-2.5 opacity-0" style={{ animation: anim.a3 }}>
+      <div
+        className="absolute inset-0 px-[18px] py-2.5 opacity-0"
+        style={{ animation: anim.a3 }}
+      >
         <pre className="m-0 font-mono text-[10px] leading-[1.75] text-ink">
           <span className="text-mute">{"{"}</span>{" "}
           <span style={{ color }}>&quot;plans&quot;</span>
@@ -257,7 +303,9 @@ function ExtractCard({ anim, color }: { anim: Anims; color: string }) {
           {",\n    "}
           <span style={{ color }}>&quot;features&quot;</span>
           {": "}
-          <span className="text-mute">[&quot;100 tasks/mo&quot;, &quot;community&quot;]</span>
+          <span className="text-mute">
+            [&quot;100 tasks/mo&quot;, &quot;community&quot;]
+          </span>
           {" },\n  { "}
           <span style={{ color }}>&quot;name&quot;</span>
           {": "}
@@ -269,7 +317,9 @@ function ExtractCard({ anim, color }: { anim: Anims; color: string }) {
           {",\n    "}
           <span style={{ color }}>&quot;features&quot;</span>
           {": "}
-          <span className="text-mute">[&quot;10k tasks/mo&quot;, &quot;priority&quot;]</span>
+          <span className="text-mute">
+            [&quot;10k tasks/mo&quot;, &quot;priority&quot;]
+          </span>
           {" },\n  { "}
           <span style={{ color }}>&quot;name&quot;</span>
           {": "}
@@ -281,7 +331,9 @@ function ExtractCard({ anim, color }: { anim: Anims; color: string }) {
           {",\n    "}
           <span style={{ color }}>&quot;features&quot;</span>
           {": "}
-          <span className="text-mute">[&quot;unlimited&quot;, &quot;on-prem&quot;]</span>
+          <span className="text-mute">
+            [&quot;unlimited&quot;, &quot;on-prem&quot;]
+          </span>
           {" }\n"}
           <span className="text-mute">] {"}"}</span>
           {"  "}

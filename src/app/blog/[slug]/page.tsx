@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { Rail } from "@/components/ui/Rail";
-import { RevealObserver } from "@/components/ui/RevealObserver";
 import { PostCta } from "@/components/blog/PostCta";
 import { mdxComponents } from "@/mdx-components";
 import { formatByline, getAuthor } from "@/lib/authors";
@@ -35,7 +34,9 @@ export async function generateMetadata({
   };
 }
 
-export default async function BlogArticlePage({ params }: PageProps<"/blog/[slug]">) {
+export default async function BlogArticlePage({
+  params,
+}: PageProps<"/blog/[slug]">) {
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) notFound();
@@ -49,8 +50,6 @@ export default async function BlogArticlePage({ params }: PageProps<"/blog/[slug
 
   return (
     <>
-      <RevealObserver />
-
       <main>
         <Rail className="px-8">
           <article className="mx-auto max-w-[720px] pt-14 pb-20">
@@ -61,7 +60,7 @@ export default async function BlogArticlePage({ params }: PageProps<"/blog/[slug
               ← blog
             </Link>
 
-            <div data-reveal>
+            <div>
               <h1 className="mt-7 mb-0 font-mono text-[clamp(26px,3.2vw,38px)] leading-[1.2] font-semibold tracking-[-0.03em] text-pretty">
                 {post.title}
               </h1>
@@ -73,11 +72,7 @@ export default async function BlogArticlePage({ params }: PageProps<"/blog/[slug
 
             <div className="my-9 border-t border-dashed border-line" />
 
-            <div
-              data-reveal
-              data-delay="80"
-              className="text-[15.5px] leading-[1.75] text-ink"
-            >
+            <div className="text-[15.5px] leading-[1.75] text-ink">
               {content}
             </div>
 

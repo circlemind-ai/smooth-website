@@ -21,7 +21,10 @@ export function ScrambleText({ children }: { children: string }) {
     setText(children);
   }
 
-  useEffect(() => () => void (timer.current && clearInterval(timer.current)), []);
+  useEffect(
+    () => () => void (timer.current && clearInterval(timer.current)),
+    [],
+  );
 
   function start() {
     if (timer.current) return;
