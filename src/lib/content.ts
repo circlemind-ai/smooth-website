@@ -9,6 +9,10 @@
 
 export type Link = { label: string; href: string };
 
+/**
+ * Not currently surfaced — the platform dropdown is hidden from the nav.
+ * Kept so restoring it is a UI change rather than a retyping exercise.
+ */
 export const platformLinks: Link[] = [
   { label: "web agents", href: "#" },
   { label: "serverless browsers", href: "#" },

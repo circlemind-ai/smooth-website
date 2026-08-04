@@ -6,23 +6,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ScrambleText } from "@/components/ui/ScrambleText";
 import { Logo } from "@/components/chrome/Logo";
-import { navLinks, platformLinks } from "@/lib/content";
+import { navLinks } from "@/lib/content";
 import { Rail } from "@/components/ui/Rail";
 
-/** The small rotated square that marks a disclosure. */
-function Caret({ className = "" }: { className?: string }) {
-  return (
-    <span
-      aria-hidden
-      className={`-mt-[3px] inline-block h-[5px] w-[5px] rotate-45 border-r-[1.5px] border-b-[1.5px] border-current ${className}`}
-    />
-  );
-}
-
 export function Nav() {
-  const [platformOpen, setPlatformOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobilePlatformOpen, setMobilePlatformOpen] = useState(false);
   const pathname = usePathname();
 
   // `/blog/some-post` should still light up the blog link, but `/` must not
@@ -39,35 +27,6 @@ export function Nav() {
 
         {/* primary nav */}
         <div className="flex items-center gap-[30px] font-mono text-[12.5px] max-md:hidden">
-          <div
-            className="relative"
-            onMouseEnter={() => setPlatformOpen(true)}
-            onMouseLeave={() => setPlatformOpen(false)}
-          >
-            <button
-              type="button"
-              aria-expanded={platformOpen}
-              className="inline-flex cursor-pointer items-center gap-2 py-[18px] text-dim transition-colors hover:text-ink"
-            >
-              <ScrambleText>platform</ScrambleText>
-              <Caret />
-            </button>
-
-            {platformOpen && (
-              <div className="absolute top-full -left-4 z-60 min-w-[236px] border border-ink bg-paper py-1.5 shadow-[4px_4px_0_var(--color-card)]">
-                {platformLinks.map((l) => (
-                  <Link
-                    key={l.label}
-                    href={l.href}
-                    className="flex items-center gap-2.5 px-4 py-[9px] text-xs text-dim hover:bg-soft hover:text-ink"
-                  >
-                    {l.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-
           {navLinks.map((l) => (
             <Link
               key={l.label}
@@ -110,27 +69,6 @@ export function Nav() {
 
       {mobileOpen && (
         <div className="border-t border-dashed border-line bg-paper pt-1.5 pb-2.5 md:hidden">
-          <button
-            type="button"
-            onClick={() => setMobilePlatformOpen((v) => !v)}
-            aria-expanded={mobilePlatformOpen}
-            className="flex w-full cursor-pointer items-center gap-2.5 px-7 py-3 font-mono text-[13px] text-dim"
-          >
-            platform <Caret />
-          </button>
-
-          {mobilePlatformOpen &&
-            platformLinks.map((l) => (
-              <Link
-                key={l.label}
-                href={l.href}
-                onClick={() => setMobileOpen(false)}
-                className="block px-11 py-[9px] font-mono text-xs text-dim"
-              >
-                {l.label}
-              </Link>
-            ))}
-
           {navLinks.map((l) => (
             <Link
               key={l.label}
