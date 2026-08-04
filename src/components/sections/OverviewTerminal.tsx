@@ -2,7 +2,7 @@ import { TileMosaic } from "@/components/ui/TileMosaic";
 import { BrowserWindow } from "@/components/ui/BrowserWindow";
 import { HatchBox } from "@/components/ui/HatchBox";
 import { SpecTip } from "@/components/ui/SpecTip";
-import { TipGif } from "@/components/ui/TipGif";
+import { TipVideo } from "@/components/ui/TipVideo";
 import { Rail } from "@/components/ui/Rail";
 
 /** Inverted label that heads each block of the document. */
@@ -58,9 +58,9 @@ export function OverviewTerminal() {
                       <>
                         we use small models specialized in web tasks instead of
                         giant general-purpose LLMs
-                        <TipGif
-                          src="/assets/comparison.gif"
-                          alt="Smooth vs alternatives — flight search comparison"
+                        <TipVideo
+                          src="/assets/comparison"
+                          label="Smooth vs alternatives — flight search comparison"
                           aspectRatio={800 / 450}
                           className="mt-2 block w-full border border-[rgba(222,238,255,0.25)]"
                         />
