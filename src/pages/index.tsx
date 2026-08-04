@@ -88,7 +88,7 @@ export default function Home() {
                 </p>
                 <div className="button-group margin-paragraph centered">
                   <Link href="https://app.smooth.sh" className="button primary">Start for free</Link>
-                  <Link href="https://calendly.com/circlemind/circlemind-demo" className="button tertiary">Request a Demo</Link>
+                  <Link href="https://calendly.com/smooth-sh/talk-to-us" className="button tertiary">Request a Demo</Link>
                 </div>
               </div>
               <div className="image-wide">
@@ -433,7 +433,7 @@ export default function Home() {
                 <h2>Start for free, scale easily.</h2>
                 <div className="button-group margin-paragraph centered">
                   <Link href="https://app.smooth.sh" className="button primary">Start for free</Link>
-                  <Link href="https://calendly.com/circlemind/circlemind-demo" className="button tertiary">Request a Demo</Link>
+                  <Link href="https://calendly.com/smooth-sh/talk-to-us" className="button tertiary">Request a Demo</Link>
                 </div>
               </div>
             </section>
