@@ -174,7 +174,7 @@ export default function Pricing() {
                     Custom solutions, security compliance, premium support.
                   </p>
                 </div>
-                <a href="https://calendly.com/circlemind/circlemind-demo" className="button tertiary">Request a demo</a>
+                <a href="https://calendly.com/smooth-sh/talk-to-us" className="button tertiary">Request a demo</a>
               </div>
             </section>
             <section>
