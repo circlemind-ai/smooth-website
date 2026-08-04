@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Reference material pulled from Claude Design — the original dc-runtime
+    // document and its generated support bundle. Read-only, never shipped.
+    "design_import/**",
   ]),
 ]);
 
