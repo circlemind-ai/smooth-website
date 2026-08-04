@@ -135,6 +135,7 @@ export const faqs: { q: string; a: string }[] = [
  */
 export type StackKind = "login" | "extract" | "blog" | "search";
 
+/** `search` is built but currently hidden — re-add its entry to bring it back. */
 export const stackItems: {
   kind: StackKind;
   title: string;
@@ -172,15 +173,6 @@ export const stackItems: {
     color: "#FF7BDF",
     bg: "#FFD6F4",
     hold: 4500,
-  },
-  {
-    kind: "search",
-    title: "search",
-    desc: "finds relevant pages from the live web",
-    win: "google",
-    color: "#59ABFF",
-    bg: "#DEEEFF",
-    hold: 5500,
   },
 ];
 
