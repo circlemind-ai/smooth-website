@@ -32,12 +32,6 @@ const hexRgb = (hex: string): RGB => [
   parseInt(hex.slice(5, 7), 16),
 ];
 
-const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
-
-/** Snap a 0-1 value to one of `steps` evenly spaced levels. */
-const quantise = (v: number, steps: number) =>
-  Math.round(v * (steps - 1)) / (steps - 1);
-
 type Palette = { deep: RGB; base: RGB; top: RGB };
 
 /** Derive a three-stop ramp from a single accent colour. */
@@ -50,20 +44,11 @@ export function paletteFromHue(hex: string): Palette {
   };
 }
 
-function shade(
-  v: number,
-  pink: number,
-  light: boolean,
-  pal: Palette | null,
-  maxPink: number,
-): string {
+function shade(v: number, pink: number, light: boolean, pal: Palette | null): string {
   const t = Math.max(0, Math.min(1, v));
 
   if (pal) {
-    const c =
-      t < 0.5
-        ? mix(pal.deep, pal.base, t * 2)
-        : mix(pal.base, pal.top, (t - 0.5) * 2);
+    const c = t < 0.5 ? mix(pal.deep, pal.base, t * 2) : mix(pal.base, pal.top, (t - 0.5) * 2);
     return `rgb(${c[0] | 0},${c[1] | 0},${c[2] | 0})`;
   }
 
@@ -74,31 +59,21 @@ function shade(
   const top: RGB = light ? [190, 222, 255] : [255, 255, 255];
 
   let c = t < 0.5 ? mix(deep, base, t * 2) : mix(base, top, (t - 0.5) * 2);
-  if (pink > 0) c = mix(c, [255, 123, 223], Math.min(maxPink, pink));
+  if (pink > 0) c = mix(c, [255, 123, 223], Math.min(light ? 0.75 : 0.45, pink));
   return `rgb(${c[0] | 0},${c[1] | 0},${c[2] | 0})`;
 }
 
 type Blob = {
-  ax: number;
-  ay: number;
-  rx: number;
-  ry: number;
-  sx: number;
-  sy: number;
-  px: number;
-  py: number;
-  rad: number;
-  w: number;
-  tint: number;
-  lobes: number;
-  lph: number;
-  lamp: number;
-  lspd: number;
+  ax: number; ay: number;
+  rx: number; ry: number;
+  sx: number; sy: number;
+  px: number; py: number;
+  rad: number; w: number; tint: number;
+  lobes: number; lph: number; lamp: number; lspd: number;
 };
 
 type Field = {
-  cols: number;
-  rows: number;
+  cols: number; rows: number;
   blobs: Blob[];
   trail: { x: number; y: number; t: number }[];
   ox: number;
@@ -113,61 +88,20 @@ export type MosaicOptions = {
   hue?: string | null;
   /** Anchor tiles to the right edge (for gutters on the left of the page). */
   alignRight?: boolean;
-  /**
-   * Snap shading to this many discrete levels. The blobs span 16-30 tiles, so
-   * the field barely moves across a single 21px tile and the mosaic reads as a
-   * smooth wash with the grid invisible. Quantising makes adjacent tiles
-   * either match exactly or jump a full step, which is what makes the tiles
-   * legible as tiles. 0 leaves the ramp continuous.
-   */
-  steps?: number;
-  /**
-   * How strongly the pink accent reads, as a multiplier on the base field.
-   * 1 leaves it as a hint; higher values widen the pink blobs, deepen the
-   * tint, and raise the ceiling on how far a tile can shift off blue.
-   */
-  pinkBoost?: number;
-  /**
-   * How many drifting blobs make up the field. More means a busier, more
-   * broken-up surface. Costs a pass per blob per tile each frame, so this is
-   * the main performance dial. Rounded to a multiple of the 6-tint pattern so
-   * the colour mix stays in proportion.
-   */
-  blobCount?: number;
-  /** Multiplier on the drift rate. 1 is the base ambient pace. */
-  speed?: number;
 };
 
-/**
- * The six-blob tint pattern, repeated to cover `count` blobs. Cycling rather
- * than generating keeps the proportion of pink to white to deep-blue fixed
- * however many blobs a mosaic asks for.
- */
-function tintsFor(
-  { seedIndex, light, hue }: MosaicOptions,
-  count: number,
-): number[] {
-  const pattern = hue
-    ? [0, 0, -1, 0, 0, -1]
-    : light
-      ? [0, 1, 0, 1, 0, 1]
-      : // The first full mosaic leans pink — four accent blobs against a
-        // single deep-blue one, where later ones stay mostly blue and calm.
-        seedIndex === 0
-        ? [1, 1, 1, 1, 0, -1]
-        : [0, 0, -1, 1, 0, -1];
-
-  return Array.from({ length: count }, (_, i) => pattern[i % pattern.length]);
+function tintsFor({ seedIndex, light, hue }: MosaicOptions): number[] {
+  if (hue) return [0, 0, -1, 0, 0, -1];
+  if (light) return [0, 1, 0, 1, 0, 1];
+  // The first full mosaic on the page gets extra pink so the accent reads
+  // immediately; later ones are calmer.
+  return seedIndex === 0 ? [1, 1, -1, 1, 0, -1] : [0, 0, -1, 1, 0, -1];
 }
 
 function buildField(w: number, h: number, opts: MosaicOptions): Field {
   const cols = Math.ceil(w / TILE);
   const rows = Math.ceil(h / TILE);
-  // Round to whole cycles of the 6-tint pattern so the colour mix holds.
-  const count = Math.max(1, Math.round((opts.blobCount ?? 6) / 6)) * 6;
-  const tints = tintsFor(opts, count);
-  const pinkBoost = opts.pinkBoost ?? 1;
-  const speed = opts.speed ?? 1;
+  const tints = tintsFor(opts);
 
   let seed = (opts.seedIndex + 1) * 1013904223;
   const rnd = () => {
@@ -176,24 +110,20 @@ function buildField(w: number, h: number, opts: MosaicOptions): Field {
   };
 
   const blobs: Blob[] = [];
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < 6; i++) {
     const tint = tints[i];
     blobs.push({
-      ax: (i + 0.5) * (cols / count) + (rnd() - 0.5) * cols * 0.15,
+      ax: (i + 0.5) * (cols / 6) + (rnd() - 0.5) * cols * 0.15,
       ay: rnd() * rows,
       rx: cols * (0.2 + rnd() * 0.3),
       ry: rows * (0.25 + rnd() * 0.4),
-      sx: (0.015 + rnd() * 0.025) * speed,
-      sy: (0.012 + rnd() * 0.02) * speed,
+      sx: 0.015 + rnd() * 0.025,
+      sy: 0.012 + rnd() * 0.02,
       px: rnd() * 6.28,
       py: rnd() * 6.28,
-      // Pink blobs are small and dim by default so the accent reads as a
-      // hint; pinkBoost widens and strengthens them.
-      rad:
-        tint === 1
-          ? (cols * 0.14 + rnd() * cols * 0.1) * pinkBoost
-          : cols * 0.3 + rnd() * cols * 0.25,
-      w: tint === 1 ? (0.35 + rnd() * 0.15) * pinkBoost : 0.6 + rnd() * 0.4,
+      // Pink blobs stay small and dim so the accent reads as a hint.
+      rad: tint === 1 ? cols * 0.14 + rnd() * cols * 0.1 : cols * 0.3 + rnd() * cols * 0.25,
+      w: tint === 1 ? 0.35 + rnd() * 0.15 : 0.6 + rnd() * 0.4,
       tint,
       lobes: 2 + Math.floor(rnd() * 3),
       lph: rnd() * 6.28,
@@ -239,20 +169,8 @@ function paint(entry: Entry, now: number) {
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
 
-  // Each blob adds to the same accumulators, so a denser field would drive the
-  // value past the ends of the ramp and clamp whole regions flat — the exact
-  // opposite of the quantising above. Damping by sqrt of the ratio to the base
-  // six keeps the amplitude in range while preserving the extra detail; at six
-  // blobs it is exactly 1 and changes nothing.
-  const energy = Math.sqrt(6 / field.blobs.length);
-
   const light = !!entry.opts.light;
   const pal = entry.opts.hue ? paletteFromHue(entry.opts.hue) : null;
-  const pinkBoost = entry.opts.pinkBoost ?? 1;
-  // Ceiling on how far a tile can shift off the blue ramp. Capped short of 1
-  // so the field never flattens into solid pink.
-  const maxPink = light ? 0.75 : Math.min(0.85, 0.45 * pinkBoost);
-  const steps = entry.opts.steps ?? 0;
 
   const pos = field.blobs.map((b) => ({
     x: b.ax + b.rx * Math.sin(now * b.sx * 6.28 + b.px),
@@ -266,8 +184,7 @@ function paint(entry: Entry, now: number) {
   }));
 
   // Fade out the pointer wake: quick ignite, slow decay.
-  while (field.trail.length && now - field.trail[0].t > TRAIL_MS)
-    field.trail.shift();
+  while (field.trail.length && now - field.trail[0].t > TRAIL_MS) field.trail.shift();
   const wake: { x: number; y: number; w: number }[] = [];
   for (const p of field.trail) {
     const age = now - p.t;
@@ -299,22 +216,13 @@ function paint(entry: Entry, now: number) {
         const rr = p.rad * (1 + p.lamp * Math.sin(p.lobes * ang + p.lph));
         const f = p.w * Math.exp(-(dx * dx + dy * dy) / (rr * rr));
 
-        if (p.tint === 1) pink += f * 0.35 * pinkBoost * energy;
-        else if (p.tint === -1) dark += f * energy;
-        else bright += f * energy;
+        if (p.tint === 1) pink += f * 0.35;
+        else if (p.tint === -1) dark += f;
+        else bright += f;
       }
 
-      let v = light
-        ? 0.5 + bright * 0.6 - dark * 0.25
-        : 0.5 + bright * 0.75 - dark * 0.7;
-      let pinkAmt = Math.min(maxPink, light ? pink * 1.6 : pink);
-
-      if (steps > 1) {
-        v = quantise(clamp01(v), steps);
-        pinkAmt = quantise(pinkAmt, steps);
-      }
-
-      ctx.fillStyle = shade(v, pinkAmt, light, pal, maxPink);
+      const v = light ? 0.5 + bright * 0.6 - dark * 0.25 : 0.5 + bright * 0.75 - dark * 0.7;
+      ctx.fillStyle = shade(v, light ? pink * 1.6 : pink, light, pal);
       // +1 on the size closes the seams between tiles.
       ctx.fillRect(c * TILE + field.ox, r * TILE, TILE + 1, TILE + 1);
     }
@@ -351,12 +259,8 @@ export function registerMosaic(
 
   // Gutter mosaics live inside pointer-events:none wrappers, so they can't
   // receive their own events — listen on the document instead.
-  const host: Document | HTMLElement = opts.light
-    ? document
-    : (canvas.parentElement ?? document);
-  host.addEventListener("pointermove", onMove as EventListener, {
-    passive: true,
-  });
+  const host: Document | HTMLElement = opts.light ? document : (canvas.parentElement ?? document);
+  host.addEventListener("pointermove", onMove as EventListener, { passive: true });
 
   if (raf === null) raf = requestAnimationFrame(loop);
 

@@ -6,8 +6,7 @@
     "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "build:check": "NEXT_DIST_DIR=.next-verify next build"
+    "lint": "eslint"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

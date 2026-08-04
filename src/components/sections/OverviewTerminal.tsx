@@ -43,14 +43,7 @@ export function OverviewTerminal() {
   return (
     <Rail>
       <div data-mosaic className="relative overflow-hidden bg-[#BCDEFF]">
-        {/* The hero mosaic leans pink; every other one stays blue. */}
-        <TileMosaic
-          seedIndex={0}
-          pinkBoost={1.3}
-          steps={16}
-          blobCount={18}
-          speed={2.5}
-        />
+        <TileMosaic seedIndex={0} />
 
         <div className="relative px-9 py-10">
           <BrowserWindow title="intro.md" className="mx-auto max-w-[780px]">
