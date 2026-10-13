@@ -30,6 +30,8 @@
 
   --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+  /* hand-drawn accent face, used for the hero's "smoothly" */
+  --font-fuzzy: var(--font-fuzzy-bubbles), cursive;
 
   /* the page is a fixed two-rail grid; these widths recur everywhere */
   --rail-narrow: 1140px;
@@ -66,6 +68,7 @@
     background: var(--color-accent);
     color: var(--color-paper);
   }
+
 }
 
 /* ============================================================
@@ -150,6 +153,99 @@
    ============================================================ */
 @layer components {
   @media (prefers-reduced-motion: reduce) {
+  }
+
+  /* ============================================================
+     Iso cube grid (triptych "infinitely scalable" cell) — cubes
+     pop in as a wave (per-cube delay via --d) and hold; the fade
+     OUT belongs to the group, so the whole cluster dissolves at
+     once instead of cubes vanishing out from under each other.
+     Cube and grid timelines share one 4.2s period: each cube
+     hides itself (71%→74% of its own, delayed, timeline) only
+     after the group fade has already covered the scene.
+     ============================================================ */
+  /* Both timelines share a 6s period. Every cube's self-hide (67%→72% of
+     its own, delayed, timeline — global 4.0s–5.8s across all delays) falls
+     strictly inside the group-hidden window (3.96s–5.94s), so no cube ever
+     visibly pops out on its own at the loop seam. */
+  .iso-grid {
+    animation: iso-grid-fade 6s linear infinite;
+  }
+
+  .iso-cube {
+    opacity: 0;
+    animation: iso-pop 6s ease-out infinite;
+    animation-delay: var(--d, 0s);
+  }
+
+  @keyframes iso-pop {
+    0% {
+      opacity: 0;
+      transform: translateY(5px);
+    }
+    5%,
+    67% {
+      opacity: 1;
+      transform: none;
+    }
+    72%,
+    100% {
+      opacity: 0;
+      transform: none;
+    }
+  }
+
+  @keyframes iso-grid-fade {
+    0%,
+    60% {
+      opacity: 1;
+    }
+    66%,
+    99% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Pulse variant: a pink duplicate of the cube sits over the blue one and
+     fades in/out on its own seeded offset — pink for ~22% of each loop, so
+     a 6-cube pool averages 1–2 pink per floor at any moment. */
+  .iso-pink {
+    opacity: 0;
+    animation: iso-blink 5s linear infinite;
+    animation-delay: var(--d, 0s);
+  }
+
+  @keyframes iso-blink {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    6%,
+    22% {
+      opacity: 1;
+    }
+    28% {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .iso-grid,
+    .iso-cube {
+      animation: none;
+      opacity: 1;
+    }
+    .iso-pink {
+      animation: none;
+      opacity: 0;
+    }
+    /* one pink per floor survives as a static accent */
+    .iso-pink-static {
+      opacity: 1;
+    }
   }
 
   /* ============================================================

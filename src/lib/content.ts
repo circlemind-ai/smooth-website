@@ -15,10 +15,13 @@ export const urls = {
   /** dashboard / sign-in / sign-up */
   app: "https://app.smooth.sh",
   docs: "https://docs.smooth.sh",
+  apiReference: "https://docs.smooth.sh/api-reference/introduction",
+  status: "https://status.smooth.sh",
+  sdk: "https://github.com/circlemind-ai/smooth-sdk",
   booking: "https://calendly.com/smooth-sh/talk-to-us",
   github: "https://github.com/circlemind-ai",
   linkedin: "https://www.linkedin.com/company/circlemindai",
-  x: "https://x.com/circlemind_ai",
+  x: "https://x.com/smoothdotsh",
   privacy: "https://app.smooth.sh/privacy",
   terms: "https://app.smooth.sh/terms",
 } as const;
@@ -40,86 +43,75 @@ export const platformLinks: Link[] = [
 ];
 
 export const navLinks: Link[] = [
-  { label: "docs", href: urls.docs },
-  { label: "pricing", href: "/pricing" },
   { label: "blog", href: "/blog" },
+  { label: "pricing", href: "/pricing" },
+  { label: "docs", href: urls.docs, external: true },
 ];
 
 export const footerColumns: { title: string; links: Link[] }[] = [
   {
-    title: "Product",
+    title: "product",
     links: [
-      { label: "Web Agents", href: "#" },
-      { label: "Serverless Browsers", href: "#" },
-      { label: "Fetch API", href: "#" },
-      { label: "Search API", href: "#" },
-      { label: "Stealth Browsing", href: "#" },
-      { label: "Pricing", href: "/pricing" },
-      { label: "Security", href: "#" },
+      { label: "web agents", href: "#" },
+      { label: "serverless browsers", href: "#" },
+      { label: "fetch api", href: "#" },
+      { label: "search api", href: "#" },
+      { label: "stealth browsing", href: "#" },
+      { label: "security", href: "#" },
     ],
   },
   {
-    title: "Use cases",
+    title: "use cases",
     links: [
-      { label: "Web Scraping", href: "#" },
-      { label: "Automated Testing", href: "#" },
-      { label: "Data Extraction", href: "#" },
-      { label: "Form Filling", href: "#" },
-      { label: "Price Monitoring", href: "#" },
-      { label: "AI Agents", href: "#" },
-      { label: "Market Research", href: "#" },
+      { label: "web scraping", href: "#" },
+      { label: "automated testing", href: "#" },
+      { label: "data extraction", href: "#" },
+      { label: "form filling", href: "#" },
+      { label: "price monitoring", href: "#" },
+      { label: "ai agents", href: "#" },
+      { label: "market research", href: "#" },
     ],
   },
   {
-    title: "Developers",
+    title: "developers",
     links: [
-      { label: "Documentation", href: urls.docs },
-      { label: "API Reference", href: "#" },
-      { label: "Dashboard", href: urls.app },
-      { label: "Changelog", href: "#" },
-      { label: "Status", href: "#" },
-      { label: "Python SDK", href: "#" },
-      { label: "TypeScript SDK", href: "#" },
+      { label: "documentation", href: urls.docs },
+      { label: "dashboard", href: urls.app },
+      { label: "changelog", href: "#" },
+      { label: "status", href: urls.status, external: true },
+      { label: "sdk", href: urls.sdk, external: true },
     ],
   },
   {
-    title: "Resources",
+    title: "resources",
     links: [
-      { label: "Blog", href: "/blog" },
-      { label: "Benchmarks", href: "/#benchmarks" },
-      { label: "Case Studies", href: "#" },
-      { label: "Smooth vs browser-use", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Videos", href: "#" },
+      { label: "blog", href: "/blog" },
+      { label: "benchmarks", href: "https://docs.smooth.sh/performance", external: true },
+      { label: "pricing", href: "/pricing" },
+      { label: "case studies", href: "#" },
+      { label: "smooth vs browser-use", href: "#" },
+      { label: "careers", href: "#" },
+      { label: "videos", href: "#" },
     ],
   },
   {
-    title: "Legal",
+    // Only entries with a real destination — the email/sales/support rows
+    // this replaced had none.
+    title: "social",
     links: [
-      { label: "Terms of Service", href: urls.terms },
-      { label: "Privacy Policy", href: urls.privacy },
-      { label: "Subprocessors", href: "#" },
-      { label: "SLA", href: "#" },
-    ],
-  },
-  {
-    title: "Contact",
-    links: [
-      { label: "Team Email", href: "#" },
-      { label: "Sales", href: "#" },
-      { label: "Support", href: "#" },
-      { label: "GitHub", href: urls.github, external: true },
-      { label: "LinkedIn", href: urls.linkedin, external: true },
-      { label: "X.com", href: urls.x, external: true },
+      { label: "github", href: urls.github, external: true },
+      { label: "linkedin", href: urls.linkedin, external: true },
+      { label: "x.com", href: urls.x, external: true },
     ],
   },
 ];
 
+
 export const footerBottomLinks: Link[] = [
-  { label: "Legal", href: "#" },
-  { label: "Trust Center", href: "#" },
-  { label: "Privacy Policy", href: urls.privacy },
+  { label: "privacy policy", href: urls.privacy },
+  { label: "terms of service", href: urls.terms },
 ];
+
 
 export const faqs: { q: string; a: string }[] = [
   {

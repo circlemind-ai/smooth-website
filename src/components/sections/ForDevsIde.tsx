@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { TileMosaic } from "@/components/ui/TileMosaic";
+import { TileStage } from "@/components/ui/TileStage";
 import { TitleBar } from "@/components/ui/BrowserWindow";
 import { useCopy } from "@/hooks/useCopy";
 import { Rail } from "@/components/ui/Rail";
@@ -86,7 +86,7 @@ export function ForDevsIde() {
             data-mosaic
             className="relative h-full overflow-hidden bg-[#BCDEFF]"
           >
-            <TileMosaic seedIndex={2} />
+            <TileStage seed={2} light />
 
             <div className="relative px-8 py-10">
               <div className="mx-auto max-w-[780px] border border-ink bg-paper shadow-[8px_8px_0_var(--color-card)]">

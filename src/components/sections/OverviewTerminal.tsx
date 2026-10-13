@@ -1,4 +1,4 @@
-import { TileMosaic } from "@/components/ui/TileMosaic";
+import { TileStage } from "@/components/ui/TileStage";
 import { BrowserWindow } from "@/components/ui/BrowserWindow";
 import { HatchBox } from "@/components/ui/HatchBox";
 import { SpecTip } from "@/components/ui/SpecTip";
@@ -43,7 +43,7 @@ export function OverviewTerminal() {
   return (
     <Rail>
       <div data-mosaic className="relative overflow-hidden bg-[#BCDEFF]">
-        <TileMosaic seedIndex={0} />
+        <TileStage seed={0} light />
 
         <div className="relative px-9 py-10">
           <BrowserWindow title="intro.md" className="mx-auto max-w-[780px]">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
+import { Fuzzy_Bubbles, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
 import { Nav } from "@/components/chrome/Nav";
 import { Footer } from "@/components/chrome/Footer";
 import { DividerStrip } from "@/components/chrome/DividerStrip";
@@ -16,6 +16,14 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+/* Only used by the hero's "smoothly" — one weight keeps the payload small. */
+const fuzzyBubbles = Fuzzy_Bubbles({
+  variable: "--font-fuzzy-bubbles",
+  subsets: ["latin"],
+  weight: "700",
   display: "swap",
 });
 
@@ -42,7 +50,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${plexSans.variable} ${jetbrainsMono.variable} antialiased`}
+      className={`${plexSans.variable} ${jetbrainsMono.variable} ${fuzzyBubbles.variable} antialiased`}
     >
       <body className="min-h-screen bg-paper text-ink">
         <Nav />

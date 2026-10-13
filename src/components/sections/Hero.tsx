@@ -16,9 +16,33 @@ export function Hero() {
   return (
     <header className="relative">
       <Rail className="px-8 pt-[72px] pb-14">
-        <h1 className="m-0 max-w-[700px] font-mono text-[clamp(30px,3.8vw,48px)] leading-[1.15] font-semibold tracking-[-0.03em]">
+        {/* Below 800px the size tracks the viewport (6.2vw) so the second
+            line stays inline down to ~390px and wraps "smoothly" onto its
+            own line on the narrowest phones (iPhone SE). */}
+        <h1 className="m-0 max-w-[700px] font-mono text-[clamp(30px,3.8vw,48px)] leading-[1.15] font-semibold tracking-[-0.03em] max-md:text-[clamp(22px,6.2vw,30px)]">
+          {/* Three separate no-break islands: on desktop they settle as
+              "build agents that" / "use the web smoothly", and on very
+              narrow screens (iPhone SE) "smoothly" drops to its own line. */}
           <span className="whitespace-nowrap">build agents that</span>{" "}
-          <span className="whitespace-nowrap">use the web</span>
+          <span className="whitespace-nowrap">use the web</span>{" "}
+          <span className="relative inline-block font-fuzzy text-[1.12em] font-bold tracking-[-0.06em] text-accent">
+            smoothly
+            {/* hand-drawn swoosh under the word, scales with the text */}
+            <svg
+              viewBox="0 0 100 12"
+              preserveAspectRatio="none"
+              aria-hidden
+              className="absolute bottom-[0.02em] left-0 h-[0.2em] w-[88%]"
+            >
+              <path
+                d="M3 10 Q 50 1 97 7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="5"
+                strokeLinecap="round"
+              />
+            </svg>
+          </span>
         </h1>
 
         <p className="mt-[18px] max-w-[540px] text-[16.5px] leading-[1.6] text-pretty text-dim">

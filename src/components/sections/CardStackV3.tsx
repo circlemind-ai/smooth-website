@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { TileMosaic } from "@/components/ui/TileMosaic";
+import { TileStage } from "@/components/ui/TileStage";
 import { TitleBar } from "@/components/ui/BrowserWindow";
 import {
   StackCardBody,
@@ -120,7 +120,7 @@ export function CardStackV3() {
             className="relative h-full overflow-hidden transition-colors duration-500"
             style={{ background: active.bg }}
           >
-            <TileMosaic seedIndex={1} hue={active.color} />
+            <TileStage seed={1} light hue={active.color} />
 
             <div className="relative flex items-center px-8 py-10">
               <div
