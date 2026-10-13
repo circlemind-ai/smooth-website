@@ -30,13 +30,13 @@ const fuzzyBubbles = Fuzzy_Bubbles({
 export const metadata: Metadata = {
   metadataBase: new URL("https://smooth.sh"),
   title: {
-    default: "smooth — build agents that use the web",
+    default: "smooth — cloud browsers & web agents for AI",
     template: "%s — smooth",
   },
   description:
     "We handle the infra so you can focus on building agents that search, scrape, and interact with the web at scale.",
   openGraph: {
-    title: "smooth — build agents that use the web",
+    title: "smooth — cloud browsers & web agents for AI",
     description:
       "We handle the infra so you can focus on building agents that search, scrape, and interact with the web at scale.",
     url: "https://smooth.sh",

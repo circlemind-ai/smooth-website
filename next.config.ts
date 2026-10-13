@@ -18,6 +18,22 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // PostHog reverse proxy: events leave from our own domain so ad-blockers
+  // don't filter them (see src/instrumentation-client.ts).
+  rewrites() {
+    return [
+      {
+        source: "/ingest/static/:path*",
+        destination: "https://us-assets.i.posthog.com/static/:path*",
+      },
+      {
+        source: "/ingest/:path*",
+        destination: "https://us.i.posthog.com/:path*",
+      },
+    ];
+  },
+  // PostHog's API endpoints use trailing slashes; don't strip them.
+  skipTrailingSlashRedirect: true,
 };
 
 export default nextConfig;
