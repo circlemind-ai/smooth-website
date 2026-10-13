@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { DividerStrip } from "@/components/chrome/DividerStrip";
 import { Hero } from "@/components/sections/Hero";
 import { OverviewTerminal } from "@/components/sections/OverviewTerminal";
@@ -20,6 +21,13 @@ import { Cta } from "@/components/sections/Cta";
  * page: 0–2 are the full-size mosaics, 3+ the gutter strips (11 was added
  * out of order when the plug-&-play section landed).
  */
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+    types: { "application/rss+xml": "/blog/rss.xml" },
+  },
+};
+
 export default function Home() {
   return (
     <>

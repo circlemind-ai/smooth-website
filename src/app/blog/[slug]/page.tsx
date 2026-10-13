@@ -24,6 +24,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    alternates: { canonical: `/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
@@ -42,6 +43,16 @@ export default async function BlogArticlePage({
   if (!post) notFound();
 
   const author = getAuthor(post.author);
+  const postJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    datePublished: post.date,
+    url: `https://smooth.sh/blog/${post.slug}`,
+    author: { "@type": "Person", name: author.name },
+    publisher: { "@type": "Organization", name: "smooth", url: "https://smooth.sh" },
+  };
   const { content } = await compileMDX({
     source: post.body,
     components: mdxComponents,
@@ -50,6 +61,10 @@ export default async function BlogArticlePage({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(postJsonLd) }}
+      />
       <main>
         <Rail className="px-8">
           <article className="mx-auto max-w-[720px] pt-14 pb-20">

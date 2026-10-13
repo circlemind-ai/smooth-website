@@ -46,6 +46,21 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
+/** Organization markup: the smooth brand, operated by Circlemind Inc. */
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "smooth",
+  legalName: "Circlemind Inc",
+  url: "https://smooth.sh",
+  logo: "https://smooth.sh/assets/smooth-symbol.jpg",
+  sameAs: [
+    "https://github.com/circlemind-ai",
+    "https://www.linkedin.com/company/circlemindai",
+    "https://x.com/smoothdotsh",
+  ],
+};
+
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -53,6 +68,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${plexSans.variable} ${jetbrainsMono.variable} ${fuzzyBubbles.variable} antialiased`}
     >
       <body className="min-h-screen bg-paper text-ink">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
+        />
         <Nav />
         {children}
         <DividerStrip side="right" seedIndex={9} />

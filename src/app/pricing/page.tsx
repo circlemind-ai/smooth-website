@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Pricing",
   description:
     "Start for free and scale easily. Free, starter, growth and enterprise plans for running web agents in production.",
+  alternates: { canonical: "/pricing" },
 };
 
 export default function PricingPage() {

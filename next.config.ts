@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // The per-post share card renders on demand and reads the brand fonts
+  // from disk — make sure they're traced into the serverless bundle.
+  outputFileTracingIncludes: {
+    "/blog/[slug]/opengraph-image": ["./src/fonts/*.ttf"],
+  },
   redirects() {
     return [
       {

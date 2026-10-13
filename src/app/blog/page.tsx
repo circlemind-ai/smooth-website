@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Notes from the team, benchmarks, engineering, and the occasional postmortem.",
+  alternates: {
+    canonical: "/blog",
+    types: { "application/rss+xml": "/blog/rss.xml" },
+  },
 };
 
 export default function BlogPage() {
